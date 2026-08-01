@@ -1,0 +1,599 @@
+<head>
+  <title>Player</title> 
+  
+	<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+	<script type="text/javascript" src="JS/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="JS/jquery.keyframes.min.js"></script>
+	<script type="text/javascript" src="JS/accounting.min.js"></script>
+	<script type="text/javascript" src="JS/init.js"></script>
+  
+	<script type="module" src="JS/firebase.js"></script>
+	<script type="module" src="JS/functions.js"></script>
+	<script type="module" src="JS/sound_fb.js"></script>
+	<script type="module" src="JS/player_fb.js"></script>
+	
+  <link rel="stylesheet" type="text/css" href="CSS/reset.css">
+	<link rel="stylesheet" type="text/css" href="CSS/site.css">
+	<link rel="stylesheet" type="text/css" href="CSS/site_player.css">
+	
+  <meta charset="utf-8" />
+  
+  <link rel="icon" type="image/x-icon" href="Assets/favicon.ico">
+</head>
+<!--
+<body onkeydown="if(!event.target.matches('input')&&!event.target.matches('textarea')&&event.keyCode != 122 && event.keyCode != 116 && event.keyCode != 17)return!1" oncontextmenu="return!1" onselectstart="return!1" ondragstart="return!1">
+!-->
+<body>
+
+  <div class="stage">
+    
+    <div class="holder" id="background">
+
+    </div>
+    
+    <div class="holder" id="holder-1">
+      <div class="titles"></div>
+    </div>
+    
+    <div class="holder" id="holder-2">
+      <div class="black-bg"></div>
+
+      <div class="player-number">
+        <svg data-top="0" data-ypos="0" data-scale="true">
+          <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+        </svg>
+      </div>
+
+      <div class="player-name">
+        <svg data-top="0" data-ypos="0" data-scale="true">
+          <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+        </svg>
+      </div>
+
+      <div class="round-mode">
+        <svg data-top="0" data-ypos="0" data-scale="true">
+          <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+        </svg>
+      </div>
+
+      <p class="team-title">ĐỘI CHƠI</p>
+
+      <div class="player-tag" id="player-tag-1">
+        <img class="player-tag-gpx" src="Assets/ipad_bg_cb_name@2x_0007_4344.png"></img>
+        <img class="player-tag-red-gpx" src="Assets/cont name red.png"></img>
+        <svg data-top="0" data-ypos="0" data-scale="true">
+          <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+        </svg>
+      </div>
+
+      <div class="player-tag" id="player-tag-2">
+        <img class="player-tag-gpx" src="Assets/ipad_bg_cb_name@2x_0007_4344.png"></img>
+        <img class="player-tag-red-gpx" src="Assets/cont name red.png"></img>
+        <svg data-top="0" data-ypos="0" data-scale="true">
+          <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+        </svg>
+      </div>
+
+      <div class="player-tag" id="player-tag-3">
+        <img class="player-tag-gpx" src="Assets/ipad_bg_cb_name@2x_0007_4344.png"></img>
+        <img class="player-tag-red-gpx" src="Assets/cont name red.png"></img>
+        <svg data-top="0" data-ypos="0" data-scale="true">
+          <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+        </svg>
+      </div>
+
+      <div class="player-tag" id="player-tag-4">
+        <img class="player-tag-gpx" src="Assets/ipad_bg_cb_name@2x_0007_4344.png"></img>
+        <img class="player-tag-red-gpx" src="Assets/cont name red.png"></img>
+        <svg data-top="0" data-ypos="0" data-scale="true">
+          <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+        </svg>
+      </div>
+      
+      <div class="total-money-holder">
+        <div class="total-money-title">SỐ TIỀN TỔNG</div>
+        <div class="total-money">
+          <svg data-scale="true" data-lines="1">
+            <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="cash-builder-holder">
+        <p class="cb-title">CASH BUILDER</p>
+
+        <div class="cb-gpx">
+          <img class="cb-gpx-still" src="Assets/clockOn_00007_2684.png"></img>
+          <div class="cb-money">
+            <svg data-top="0" data-ypos="0" data-scale="true">
+              <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+            </svg>
+          </div>
+          <div class="cb-timer">
+            <svg data-top="0" data-ypos="0" data-scale="true">
+              <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <p class="h2h-title">HEAD TO HEAD</p>
+
+      <div class="ans-gpx">
+        <img class="ans-border" src="Assets/Ans Border.png"></img>
+
+        <div class="ans-normal-holder">
+          <div class="ans-normal" id="ans-normal-a"></div>
+          <div class="ans-normal" id="ans-normal-b"></div>
+          <div class="ans-normal" id="ans-normal-c"></div>
+        </div>
+
+        <div class="ans-content-holder" id="ans-content-holder-lower">
+          <div class="ans-content" id="ans-content-a">
+            <div class="ans-letter" id="ans-letter-a">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+            <div class="ans-text" id="ans-text-a">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+          </div>
+          <div class="ans-content" id="ans-content-b">
+            <div class="ans-letter" id="ans-letter-b">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+            <div class="ans-text" id="ans-text-b">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+          </div>
+          <div class="ans-content" id="ans-content-c">
+            <div class="ans-letter" id="ans-letter-c">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+            <div class="ans-text" id="ans-text-c">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-gpx">
+        <img class="q-gpx-still" src="Assets/Question_00010_4701.png"></img>
+        <div class="q-text">
+          <svg data-top="0" data-ypos="22" data-scale="true" data-center="true" data-lines="2">
+            <text x="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" y="43%"></text>
+            <text x="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_2" y="90%"></text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="ans-gpx">
+        <div class="ans-lock-holder">
+          <div class="ans-lock" id="ans-lock-a">
+            <div class="ans-lock-keyframe"></div>
+          </div>
+          <div class="ans-lock" id="ans-lock-b">
+            <div class="ans-lock-keyframe"></div>
+          </div>
+          <div class="ans-lock" id="ans-lock-c">
+            <div class="ans-lock-keyframe"></div>
+          </div>
+        </div>
+
+        <div class="ans-correct-holder">
+          <div class="ans-correct" id="ans-correct-a">
+            <div class="ans-correct-keyframe"></div>
+          </div>
+          <div class="ans-correct" id="ans-correct-b">
+            <div class="ans-correct-keyframe"></div>
+          </div>
+          <div class="ans-correct" id="ans-correct-c">
+            <div class="ans-correct-keyframe"></div>
+          </div>
+        </div>
+
+        <div class="ans-chaser-holder">
+          <div class="ans-chaser" id="ans-chaser-a">
+            <div class="ans-chaser-keyframe"></div>
+          </div>
+          <div class="ans-chaser" id="ans-chaser-b">
+            <div class="ans-chaser-keyframe"></div>
+          </div>
+          <div class="ans-chaser" id="ans-chaser-c">
+            <div class="ans-chaser-keyframe"></div>
+          </div>
+        </div>
+
+        <div class="ans-content-holder" id="ans-content-holder-upper">
+          <div class="ans-content" id="ans-content-a">
+            <div class="ans-letter" id="ans-letter-a">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+            <div class="ans-text" id="ans-text-a">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+          </div>
+          <div class="ans-content" id="ans-content-b">
+            <div class="ans-letter" id="ans-letter-b">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+            <div class="ans-text" id="ans-text-b">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+          </div>
+          <div class="ans-content" id="ans-content-c">
+            <div class="ans-letter" id="ans-letter-c">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+            <div class="ans-text" id="ans-text-c">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="name-tag" id="name-tag-player">
+        <svg data-scale="true" data-lines="1">
+          <text x="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+        </svg>
+      </div>
+      <div class="name-tag" id="name-tag-chaser">
+        <svg data-scale="true" data-lines="1">
+          <text x="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+        </svg>
+      </div>
+
+      <button class="ans-submit" id="ans-submit-a" disabled>A</button>
+      <button class="ans-submit" id="ans-submit-b" disabled>B</button>
+      <button class="ans-submit" id="ans-submit-c" disabled>C</button>
+      
+      <div class="ladder">
+        <div class="ladder-step" id="ladder-step-1">
+          <img class="ls-empty" src="Assets/Ladder Step Empty.png"></img>
+          <img class="ls-normal" src="Assets/Ladder Step Normal.png"></img>
+          <img class="ls-player" src="Assets/Ladder Step Player.png"></img>
+          <div class="ladder-content">
+            <div class="lc-arrow-holder" id="lcah-left">
+              <img class="lc-arrow" id="lca-left" src="Assets/btn_chase_board_arrow0000@2x~ipad_367.png"></img>
+            </div>
+            <div class="lc-money">
+              <svg data-scale="true" data-lines="1">
+                <text x="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+              </svg>
+            </div>
+            <div class="lc-arrow-holder" id="lcah-right">
+              <img class="lc-arrow" id="lca-right" src="Assets/btn_chase_board_arrow0000@2x~ipad_367.png"></img>
+            </div>
+          </div>
+          <img class="ls-chaser" src="Assets/Ladder Step Chaser.png"></img>
+          <img class="ls-chaser-now" src="Assets/Ladder Step Chaser Now.png"></img>
+          <div class="ls-arrow">
+            <img src="Assets/Ladder_Chaser_Arrow_4362.png"></img>
+          </div>
+        </div>
+        <div class="ladder-step" id="ladder-step-2">
+          <img class="ls-empty" src="Assets/Ladder Step Empty.png"></img>
+          <img class="ls-normal" src="Assets/Ladder Step Normal.png"></img>
+          <img class="ls-player" src="Assets/Ladder Step Player.png"></img>
+          <div class="ladder-content">
+            <div class="lc-arrow-holder" id="lcah-left">
+              <img class="lc-arrow" id="lca-left" src="Assets/btn_chase_board_arrow0000@2x~ipad_367.png"></img>
+            </div>
+            <div class="lc-money">
+              <svg data-scale="true" data-lines="1">
+                <text x="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+              </svg>
+            </div>
+            <div class="lc-arrow-holder" id="lcah-right">
+              <img class="lc-arrow" id="lca-right" src="Assets/btn_chase_board_arrow0000@2x~ipad_367.png"></img>
+            </div>
+          </div>
+          <img class="ls-chaser" src="Assets/Ladder Step Chaser.png"></img>
+          <img class="ls-chaser-now" src="Assets/Ladder Step Chaser Now.png"></img>
+          <div class="ls-arrow">
+            <img src="Assets/Ladder_Chaser_Arrow_4362.png"></img>
+          </div>
+        </div>
+        <div class="ladder-step" id="ladder-step-3">
+          <img class="ls-empty" src="Assets/Ladder Step Empty.png"></img>
+          <img class="ls-normal" src="Assets/Ladder Step Normal.png"></img>
+          <img class="ls-player" src="Assets/Ladder Step Player.png"></img>
+          <div class="ladder-content">
+            <div class="lc-arrow-holder" id="lcah-left">
+              <img class="lc-arrow" id="lca-left" src="Assets/btn_chase_board_arrow0000@2x~ipad_367.png"></img>
+            </div>
+            <div class="lc-money">
+              <svg data-scale="true" data-lines="1">
+                <text x="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+              </svg>
+            </div>
+            <div class="lc-start">
+              <svg data-scale="true" data-lines="1">
+                <text x="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+              </svg>
+            </div>
+            <div class="lc-arrow-holder" id="lcah-right">
+              <img class="lc-arrow" id="lca-right" src="Assets/btn_chase_board_arrow0000@2x~ipad_367.png"></img>
+            </div>
+          </div>
+          <img class="ls-chaser" src="Assets/Ladder Step Chaser.png"></img>
+          <img class="ls-chaser-now" src="Assets/Ladder Step Chaser Now.png"></img>
+          <div class="ls-arrow">
+            <img src="Assets/Ladder_Chaser_Arrow_4362.png"></img>
+          </div>
+        </div>
+        <div class="ladder-step" id="ladder-step-4">
+          <img class="ls-empty" src="Assets/Ladder Step Empty.png"></img>
+          <img class="ls-normal" src="Assets/Ladder Step Normal.png"></img>
+          <img class="ls-player" src="Assets/Ladder Step Player.png"></img>
+          <div class="ladder-content">
+            <div class="lc-arrow-holder" id="lcah-left">
+              <img class="lc-arrow" id="lca-left" src="Assets/btn_chase_board_arrow0000@2x~ipad_367.png"></img>
+            </div>
+            <div class="lc-money">
+              <svg data-scale="true" data-lines="1">
+                <text x="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+              </svg>
+            </div>
+            <div class="lc-arrow-holder" id="lcah-right">
+              <img class="lc-arrow" id="lca-right" src="Assets/btn_chase_board_arrow0000@2x~ipad_367.png"></img>
+            </div>
+          </div>
+          <img class="ls-chaser" src="Assets/Ladder Step Chaser.png"></img>
+          <img class="ls-chaser-now" src="Assets/Ladder Step Chaser Now.png"></img>
+          <div class="ls-arrow">
+            <img src="Assets/Ladder_Chaser_Arrow_4362.png"></img>
+          </div>
+        </div>
+        <div class="ladder-step" id="ladder-step-5">
+          <img class="ls-empty" src="Assets/Ladder Step Empty.png"></img>
+          <img class="ls-normal" src="Assets/Ladder Step Normal.png"></img>
+          <img class="ls-player" src="Assets/Ladder Step Player.png"></img>
+          <div class="ladder-content">
+            <div class="lc-arrow-holder" id="lcah-left">
+              <img class="lc-arrow" id="lca-left" src="Assets/btn_chase_board_arrow0000@2x~ipad_367.png"></img>
+            </div>
+            <div class="lc-money">
+              <svg data-scale="true" data-lines="1">
+                <text x="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+              </svg>
+            </div>
+            <div class="lc-arrow-holder" id="lcah-right">
+              <img class="lc-arrow" id="lca-right" src="Assets/btn_chase_board_arrow0000@2x~ipad_367.png"></img>
+            </div>
+          </div>
+          <img class="ls-chaser" src="Assets/Ladder Step Chaser.png"></img>
+          <img class="ls-chaser-now" src="Assets/Ladder Step Chaser Now.png"></img>
+          <div class="ls-arrow">
+            <img src="Assets/Ladder_Chaser_Arrow_4362.png"></img>
+          </div>
+        </div>
+        <div class="ladder-step" id="ladder-step-6">
+          <img class="ls-empty" src="Assets/Ladder Step Empty.png"></img>
+          <img class="ls-normal" src="Assets/Ladder Step Normal.png"></img>
+          <img class="ls-player" src="Assets/Ladder Step Player.png"></img>
+          <div class="ladder-content">
+            <div class="lc-arrow-holder" id="lcah-left">
+              <img class="lc-arrow" id="lca-left" src="Assets/btn_chase_board_arrow0000@2x~ipad_367.png"></img>
+            </div>
+            <div class="lc-money">
+              <svg data-scale="true" data-lines="1">
+                <text x="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+              </svg>
+            </div>
+            <div class="lc-arrow-holder" id="lcah-right">
+              <img class="lc-arrow" id="lca-right" src="Assets/btn_chase_board_arrow0000@2x~ipad_367.png"></img>
+            </div>
+          </div>
+          <img class="ls-chaser" src="Assets/Ladder Step Chaser.png"></img>
+          <img class="ls-chaser-now" src="Assets/Ladder Step Chaser Now.png"></img>
+          <div class="ls-arrow">
+            <img src="Assets/Ladder_Chaser_Arrow_4362.png"></img>
+          </div>
+        </div>
+        <div class="ladder-step" id="ladder-step-7">
+          <img class="ls-empty" src="Assets/Ladder Step Empty.png"></img>
+          <img class="ls-normal" src="Assets/Ladder Step Normal.png"></img>
+          <img class="ls-player" src="Assets/Ladder Step Player.png"></img>
+          <div class="ladder-content">
+            <div class="lc-arrow-holder" id="lcah-left">
+              <img class="lc-arrow" id="lca-left" src="Assets/btn_chase_board_arrow0000@2x~ipad_367.png"></img>
+            </div>
+            <div class="lc-money">
+              <svg data-scale="true" data-lines="1">
+                <text x="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+              </svg>
+            </div>
+            <div class="lc-arrow-holder" id="lcah-right">
+              <img class="lc-arrow" id="lca-right" src="Assets/btn_chase_board_arrow0000@2x~ipad_367.png"></img>
+            </div>
+          </div>
+          <img class="ls-chaser" src="Assets/Ladder Step Chaser.png"></img>
+          <img class="ls-chaser-now" src="Assets/Ladder Step Chaser Now.png"></img>
+          <div class="ls-arrow">
+            <img src="Assets/Ladder_Chaser_Arrow_4362.png"></img>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="holder" id="holder-3">
+      <div class="black-bg"></div>
+
+      <div class="player-number">
+        <svg data-top="0" data-ypos="0" data-scale="true">
+          <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+        </svg>
+      </div>
+
+      <div class="player-name">
+        <svg data-top="0" data-ypos="0" data-scale="true">
+          <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+        </svg>
+      </div>
+
+      <div class="round-mode">
+        <svg data-top="0" data-ypos="0" data-scale="true">
+          <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+        </svg>
+      </div>
+
+      <p class="team-title">ĐỘI CHƠI</p>
+
+      <div class="player-tag" id="player-tag-1">
+        <img class="player-tag-gpx" src="Assets/ipad_bg_cb_name@2x_0007_4344.png"></img>
+        <img class="player-tag-red-gpx" src="Assets/cont name red.png"></img>
+        <svg data-top="0" data-ypos="0" data-scale="true">
+          <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+        </svg>
+      </div>
+
+      <div class="player-tag" id="player-tag-2">
+        <img class="player-tag-gpx" src="Assets/ipad_bg_cb_name@2x_0007_4344.png"></img>
+        <img class="player-tag-red-gpx" src="Assets/cont name red.png"></img>
+        <svg data-top="0" data-ypos="0" data-scale="true">
+          <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+        </svg>
+      </div>
+
+      <div class="player-tag" id="player-tag-3">
+        <img class="player-tag-gpx" src="Assets/ipad_bg_cb_name@2x_0007_4344.png"></img>
+        <img class="player-tag-red-gpx" src="Assets/cont name red.png"></img>
+        <svg data-top="0" data-ypos="0" data-scale="true">
+          <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+        </svg>
+      </div>
+
+      <div class="player-tag" id="player-tag-4">
+        <img class="player-tag-gpx" src="Assets/ipad_bg_cb_name@2x_0007_4344.png"></img>
+        <img class="player-tag-red-gpx" src="Assets/cont name red.png"></img>
+        <svg data-top="0" data-ypos="0" data-scale="true">
+          <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+        </svg>
+      </div>
+      
+      <div class="total-money-holder">
+        <div class="total-money-title">SỐ TIỀN TỔNG</div>
+        <div class="total-money">
+          <svg data-scale="true" data-lines="1">
+            <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="fc-bar">
+        <div class="fc-bar-holder" id="fc-bar-holder-blue">
+          <img class="fc-bar-bg" id="fc-bar-bg-blue" src="Assets/ipad_bg_fc_bar_blue@2x_4345.png"></img>
+          <div class="fc-bar-pushback"></div>
+        </div>
+
+        <div class="fc-step-holder" id="fc-step-holder-blue">
+          
+        </div>
+
+        <div class="fc-bar-holder" id="fc-bar-holder-red">
+          <img class="fc-bar-bg" id="fc-bar-bg-red" src="Assets/ipad_bg_fc_bar_red@2x_4348.png"></img>
+          <div class="fc-bar-win" id="fc-bar-win-red">
+            <div class="fc-bar-win-keyframe" id="fc-bar-win-keyframe-red"></div>
+          </div>
+        </div>
+
+        <div class="fc-step-holder" id="fc-step-holder-red">
+          
+        </div>
+
+        <div class="fc-shine-holder" id="fc-shine-holder-blue">
+          <img class="fc-shine" id="fc-shine-blue" src="Assets/ipad_bg_fc_bar_blue_shine@2x_4346.png"></img>
+        </div>
+
+        <div class="fc-shine-holder" id="fc-shine-holder-red">
+          <img class="fc-shine" id="fc-shine-red" src="Assets/ipad_bg_fc_bar_red_shine@2x_4349.png"></img> 
+        </div>
+        
+        <img class="fc-outline" src="Assets/ipad_bg_fc_bar_outline@2x_4347.png"></img> 
+
+        <div class="fc-light-holder" id="fc-light-holder-blue">
+          <img class="fc-light" id="fc-light-blue" src="Assets/white_blur_02_6246.png"></img>
+        </div>      
+
+        <div class="fc-light-holder" id="fc-light-holder-red">
+          <img class="fc-light" id="fc-light-red" src="Assets/white_blur_03_6247.png"></img>
+        </div>      
+      </div>
+
+      <div class="fc-timer">
+        <img class="fc-timer-bg" id="fc-timer-bg-green" src="Assets/ipad_bg_fc_clock@2x_4350.png"></img>
+        <img class="fc-timer-bg" id="fc-timer-bg-red" src="Assets/ipad_bg_fc_clock_red_4351.png"></img>
+        <svg data-top="0" data-ypos="0" data-scale="true">
+          <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+        </svg>
+      </div>
+      
+      <div class="current-turn-holder">
+        <div class="current-turn-title">LƯỢT HIỆN TẠI</div>
+        <div class="current-turn">
+          <svg data-scale="true" data-lines="1">
+            <text y="50%" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="q-gpx">
+        <img class="q-gpx-still" src="Assets/Question_00010_4701.png"></img>
+        <div class="q-text">
+          <svg data-top="0" data-ypos="22" data-scale="true" data-center="true" data-lines="2">
+            <text x="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" y="43%"></text>
+            <text x="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_2" y="90%"></text>
+          </svg>
+        </div>
+      </div>
+
+      <button class="player-buzzer">Bấm chuông<br/>(Có thể dùng Enter)</button>
+
+    </div>
+    
+  </div>
+  
+  <script>
+    var number_of_player = 0;
+    
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    number_of_player = urlParams.get('player');
+    
+    if (1 <= number_of_player && number_of_player <= 4) {
+      document.title = "Player " + number_of_player;
+    }
+    else {
+      document.querySelector(".stage").style.opacity = "0";
+    }
+    
+    //document.body.style.zoom = "67%";
+    document.body.style.zoom = "75%";
+  </script>
+  
+</body>

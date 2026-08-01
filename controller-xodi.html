@@ -1,0 +1,596 @@
+<head>
+  <title>Controller</title> 
+  
+	<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+	<script type="text/javascript" src="JS/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="JS/jquery.keyframes.min.js"></script>
+	<script type="text/javascript" src="JS/accounting.min.js"></script>
+	<script type="text/javascript" src="JS/init.js"></script>
+  
+	<script type="module" src="JS/firebase.js"></script>
+	<script type="module" src="JS/functions.js"></script>
+	<script type="module" src="JS/controller_fb.js"></script>
+	
+  <link rel="stylesheet" type="text/css" href="CSS/reset.css">
+	<link rel="stylesheet" type="text/css" href="CSS/site.css">
+	<link rel="stylesheet" type="text/css" href="CSS/site_controller.css">
+	
+  <meta charset="utf-8" />
+  
+  <link rel="icon" type="image/x-icon" href="Assets/favicon.ico">
+</head>
+<body>
+  <div class="stage">
+    
+    <div class="holder" id="background">
+
+    </div>     
+    
+    <div class="holder" id="holder-1">
+      <p class="holder-title">
+        XEM TRƯỚC
+      </p> 
+
+      <div class="iframe-holder">
+        <iframe src="main-dopo.html" class="screen-iframe" id="i-main"></iframe>
+        <iframe src="team-mala.html" class="screen-iframe" id="i-team" muted></iframe>
+        <iframe src="ladder-jiba.html" class="screen-iframe" id="i-ladder" muted></iframe>
+      </div>
+
+      <button class="change-main">Main</button>
+      <button class="change-team">Team</button>
+      <button class="change-ladder">Ladder</button>
+      
+    </div>
+    
+    <div class="holder" id="holder-2">
+      <p class="holder-title">
+        ÂM NHẠC
+      </p> 
+      
+      <div class="rel">
+        <button class="autoname" id="sfx_intro">Intro</button>
+        <button class="autoname" id="sfx_bumper">Hình cắt</button>
+        <button class="autoname" id="sfx_cb_sting">Cash Builder Sting</button>
+        <button class="autoname" id="sfx_who_is_chaser">Ai là Thợ săn</button>
+        <button class="autoname" id="sfx_chaser_walk_on">Thợ săn đi vào</button>
+        <button class="autoname" id="sfx_tcio">The Chase is On</button>
+        <button class="autoname" id="sfx_player_win">NC thắng</button>
+        <button class="autoname" id="sfx_player_win_alt">NC thắng (Alt)</button>
+        <button class="autoname" id="sfx_player_lose">NC bị bắt</button>
+        <button class="autoname" id="sfx_player_out">NC ra về</button>
+        <button class="autoname" id="sfx_credits">Credits</button>
+        <button class="autoname" id="sfx_post_intro_bed">NN sau intro</button>
+        <button class="autoname" id="sfx_chat_bed">NN trò chuyện</button>
+        <button class="autoname" id="sfx_chaser_bed">NN Chaser</button>
+        <button class="autoname" id="sfx_fc_win_bed">NN Thắng Final Chase</button>
+        <button class="autoname" id="sfx_h2h_bed_outlaw">NN H2H</button>
+        <button class="autoname" id="sfx_h2h_chaser_bed_outlaw">NN H2H Chaser</button>
+        <button class="autoname" id="sfx_cb_timer_outlaw">Đếm giờ Cash Builder</button>
+        <button class="autoname" id="sfx_fc_timer_outlaw">Đếm giờ Final Chase</button>
+        <button class="autoname" id="pause_bed" style="background-color:purple;">Tạm dừng NN</button>
+        <button class="autoname" id="resume_bed" style="background-color:purple;">Tiếp tục NN</button>
+        <button class="autoname" id="stop_sounds" style="background-color:red;">Dừng hết âm nhạc</button>
+      </div>
+      
+    </div>
+    
+    <div class="holder" id="holder-3">
+      <p class="holder-title">
+        DEBUG
+      </p> 
+      
+      <div class="rel">
+        <button class="reload">
+          Reload All
+        </button>    
+        <button class="reload-main">
+          Reload Main
+        </button>    
+        <button class="reload-team">
+          Reload Team
+        </button>    
+        <button class="reload-ladder">
+          Reload Ladder
+        </button>    
+        <button class="reload-player">
+          Reload Player
+        </button>    
+        <button class="reload-auth">
+          Reload Auth
+        </button>  
+        
+        <button class="edit-passkey">
+          Thay đổi mật khẩu
+        </button> 
+      </div>
+      
+    </div>
+    
+    <div class="holder" id="holder-4">
+      <p class="holder-title">
+        PHẦN CHÍNH
+      </p> 
+      
+      <div class="rel">
+        <button class="select-mode" id="sm-home">
+          Home
+        </button>    
+        
+        <button class="select-mode" id="sm-ic">
+          Individual Chase
+        </button>  
+        
+        <button class="select-mode" id="sm-fc">
+          Final Chase
+        </button>  
+      </div>
+
+      <div class="control-holder">
+        <div class="ch-round" id="chr-home">
+
+        </div>
+        
+        <div class="ch-round" id="chr-ic">
+          <div class="cash-builder">
+            <div class="cb-title">CASH BUILDER</div>
+            <div class="cnt-title">Chọn người thi</div>
+            <button class="select-player" id="sp-1" disabled>
+              <svg data-scale="true" data-lines="1">
+                <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central">NC1</text>
+              </svg>
+            </button>
+            <button class="select-player" id="sp-2" disabled>
+              <svg data-scale="true" data-lines="1">
+                <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central">NC2</text>
+              </svg>
+            </button>
+            <button class="select-player" id="sp-3" disabled>
+              <svg data-scale="true" data-lines="1">
+                <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central">NC3</text>
+              </svg>
+            </button>
+            <button class="select-player" id="sp-4" disabled>
+              <svg data-scale="true" data-lines="1">
+                <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central">NC4</text>
+              </svg>
+            </button>
+            <div class="timer-holder" id="cb-timer-holder">
+              <div class="timer-title">THỜI GIAN</div>
+              <div class="timer">
+                <svg data-scale="true" data-lines="1">
+                  <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+                </svg>
+              </div>
+            </div>
+            <button class="cb-reveal-gpx">Hiện gpx</button>
+            <button class="cb-start-timer">Đếm giờ</button>
+            <button class="cb-correct">Đúng</button>
+            <button class="cb-wrong">Sai</button>
+            <button class="cb-pause-timer">Tạm dừng đồng hồ</button>
+            <button class="cb-resume-timer">Tiếp tục đồng hồ</button>
+            <button class="cb-hide-gpx">Ẩn gpx</button>
+            <div class="temp-money-holder">
+              <div class="temp-money-title">SỐ TIỀN TẠM THỜI</div>
+              <div class="temp-money">
+                <svg data-scale="true" data-lines="1">
+                  <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+                </svg>
+              </div>
+            </div>
+            <textarea class="temp-money-adjust" placeholder="Nhập tiền..."></textarea>
+            <button class="temp-money-submit">Update</button>
+            <button class="cb-chaser-walk-on">Thợ săn đi vào</button>
+          </div>
+
+          <div class="ic-question">
+            <textarea class="icq-q-text" placeholder="Nội dung câu hỏi..." disabled></textarea>
+            <div class="icq-dad">ĐÁP ÁN ĐÚNG</div>
+            <textarea class="icq-correct-ans" placeholder="Nội dung đáp án đúng..." disabled></textarea>
+            <div class="icq-ans-holder" id="icq-ans-a">
+              <div class="icq-ans-letter" id="icq-al-a">A</div>
+              <textarea class="icq-ans-text" id="icq-at-a" placeholder="Nội dung đáp án A (H2H Only)..." disabled></textarea>
+            </div>
+            <div class="icq-ans-holder" id="icq-ans-b">
+              <div class="icq-ans-letter" id="icq-al-b">B</div>
+              <textarea class="icq-ans-text" id="icq-at-b" placeholder="Nội dung đáp án B (H2H Only)..." disabled></textarea>
+            </div>
+            <div class="icq-ans-holder" id="icq-ans-c">
+              <div class="icq-ans-letter" id="icq-al-c">C</div>
+              <textarea class="icq-ans-text" id="icq-at-c" placeholder="Nội dung đáp án C (H2H Only)..." disabled></textarea>
+            </div>
+            <textarea class="icq-note" placeholder="Nội dung phần ghi chú..." disabled></textarea>
+          </div>
+          
+          <div class="head-to-head">
+            <div class="h2h-title">HEAD TO HEAD</div>
+
+            <p class="high-offer-title">High Offer</p>
+            <textarea class="ho-adjust" placeholder="Nhập tiền..."></textarea>
+
+            <p class="low-offer-title">Low Offer</p>
+            <textarea class="lo-adjust" placeholder="Nhập tiền..."></textarea>
+
+            <button class="update-offer">Update</button>
+
+            <button class="ladder-init">Hiện tiền khởi đầu</button>
+            <button class="show-low-offer">Hiện low offer</button>
+            <button class="show-high-offer">Hiện high offer</button>
+
+            <button class="choose-high-offer">Chọn high</button>
+            <button class="choose-medium-offer">Chọn medium</button>
+            <button class="choose-low-offer">Chọn low</button>
+
+            <button class="the-chase-is-on">Bắt đầu cuộc truy đuổi</button>
+
+            <button class="h2h-reveal-ques">Hiện câu hỏi</button>
+            <button class="h2h-reveal-ans">Hiện các đáp án</button>
+
+            <div class="timer-holder" id="h2h-timer-holder">
+              <div class="timer-title">THỜI GIAN</div>
+              <div class="timer">
+                <svg data-scale="true" data-lines="1">
+                  <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+                </svg>
+              </div>
+            </div>
+
+            <button class="h2h-reveal-cont-ans">Hiện đáp án người chơi</button>
+            <button class="h2h-reveal-correct-ans">Hiện đáp án đúng</button>
+            <button class="h2h-player-move">Player đi tiếp</button>
+
+            <button class="h2h-reveal-chaser-ans">Hiện đáp án Chaser</button>
+            <button class="h2h-hide-ques">Ẩn câu hỏi</button>
+            <button class="h2h-chaser-move">Chaser đi tiếp</button>
+
+            <p class="ladder-title">Ladder</p>
+
+            <div class="ladder-holder">
+              <div class="ladder-step" id="ladder-step-1">
+                <svg data-scale="true" data-lines="1">
+                  <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+                </svg>
+              </div>
+              <div class="ladder-step" id="ladder-step-2">
+                <svg data-scale="true" data-lines="1">
+                  <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+                </svg>
+              </div>
+              <div class="ladder-step" id="ladder-step-3">
+                <svg data-scale="true" data-lines="1">
+                  <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+                </svg>
+              </div>
+              <div class="ladder-step" id="ladder-step-4">
+                <svg data-scale="true" data-lines="1">
+                  <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+                </svg>
+              </div>
+              <div class="ladder-step" id="ladder-step-5">
+                <svg data-scale="true" data-lines="1">
+                  <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+                </svg>
+              </div>
+              <div class="ladder-step" id="ladder-step-6">
+                <svg data-scale="true" data-lines="1">
+                  <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+                </svg>
+              </div>
+              <div class="ladder-step" id="ladder-step-7">
+                <svg data-scale="true" data-lines="1">
+                  <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+                </svg>
+              </div>
+            </div>
+
+            <p class="l-player-title">Player</p>
+            <button class="l-player-up">Lên</button>
+            <button class="l-player-down">Xuống</button>
+
+            <p class="l-chaser-title">Chaser</p>
+            <button class="l-chaser-up">Lên</button>
+            <button class="l-chaser-down">Xuống</button>
+
+            <button class="ic-check-win-lose">Kiểm tra thắng/thua</button>
+          </div>
+
+          <div class="ques-list-holder" id="qlh-cb">
+            <p class="ques-list-title">BCH Cash Builder</p>
+            <select class="ques-list" size="50"></select>
+            
+            <p class="ques-using-index"></p>
+            <button class="ques-prev" disabled>←</button>
+            <button class="ques-submit" disabled>Dùng</button>
+            <button class="ques-next" disabled>→</button>
+          </div>
+
+          <div class="ques-list-holder" id="qlh-h2h">
+            <p class="ques-list-title">BCH Head to Head</p>
+            <select class="ques-list" size="50"></select>
+            
+            <p class="ques-using-index"></p>
+            <button class="ques-prev" disabled>←</button>
+            <button class="ques-submit" disabled>Dùng</button>
+            <button class="ques-next" disabled>→</button>
+          </div>
+
+          <button class="ic-reset">Reset</button>
+        </div>
+        
+        <div class="ch-round" id="chr-fc">
+          <div class="fc-question">
+            <textarea class="fcq-q-text" placeholder="Nội dung câu hỏi..." disabled></textarea>
+            <div class="fcq-dad">ĐÁP ÁN ĐÚNG</div>
+            <textarea class="fcq-correct-ans" placeholder="Nội dung đáp án đúng..." disabled></textarea>
+            <textarea class="fcq-note" placeholder="Nội dung phần ghi chú..." disabled></textarea>
+          </div>
+
+          <div class="fc-bar">
+
+          </div>
+
+          <p class="s-player-title">Player</p>
+          <button class="s-player-up">+1</button>
+          <button class="s-player-down">-1</button>
+          <textarea class="s-player-step-adjust"></textarea>
+          <button class="s-player-step-submit">Update</button>
+
+          <p class="s-chaser-title">Chaser</p>
+          <button class="s-chaser-up">+1</button>
+          <button class="s-chaser-down">-1</button>
+          <textarea class="s-chaser-step-adjust"></textarea>
+          <button class="s-chaser-step-submit">Update</button>
+
+          <button class="fc-check-lose">Kiểm tra thua</button>
+
+          <p class="fc-turn-title">Lượt hiện tại:</p>
+          <div class="fc-turn">
+            <svg data-scale="true" data-lines="1">
+              <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+            </svg>
+          </div>
+
+          <div class="timer-holder" id="fc-timer-holder">
+            <div class="timer-title">THỜI GIAN</div>
+            <div class="timer">
+              <svg data-scale="true" data-lines="1">
+                <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+              </svg>
+            </div>
+          </div>
+          
+          <button class="fc-chaser-start">Thợ săn bắt đầu</button>
+          
+          <button class="fc-reveal-steps">Hiện gpx</button>
+          <button class="fc-reveal-timer">Hiện giờ</button>
+          <button class="fc-start-timer">Đếm giờ</button>
+
+          <button class="fc-correct">Đúng</button>
+          <button class="fc-wrong">Sai</button>
+
+          <button class="fc-pause-timer">Tạm dừng đồng hồ</button>
+          <button class="fc-resume-timer">Tiếp tục đồng hồ</button>
+          <button class="fc-hide-gpx">Ẩn gpx</button>
+          <button class="fc-lose-money">Mất tiền</button>
+
+          <button class="fc-stop-cooldown">Dừng nhạc cooldown</button>
+          <button class="fc-player-correct">Player đúng</button>
+          <button class="fc-continue">Tiếp tục</button>
+
+          <button class="fc-auto-set-steps">Đặt số steps khởi đầu</button>
+          
+          <div class="ques-list-holder-ver2" id="qlh-fc">
+            <p class="ques-list-title">BCH Final Chase</p>
+            <select class="ques-list" size="100"></select>
+            
+            <p class="ques-using-index"></p>
+            <button class="ques-prev" disabled>←</button>
+            <button class="ques-submit" disabled>Dùng</button>
+            <button class="ques-next" disabled>→</button>
+          </div>
+
+          <button class="fc-reset">Reset</button>
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="holder" id="holder-5">
+      <p class="holder-title">
+        SỬA ĐỔI TEAM
+      </p> 
+      
+      <div class="total-money-holder">
+        <div class="total-money-title">SỐ TIỀN TỔNG</div>
+        <div class="total-money">
+          <svg data-scale="true" data-lines="1">
+            <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="te-player-holder" id="te-player-1">
+        <p class="te-player-title" id="te-pt-1">NC1</p>
+        <div class="te-player-name" id="te-pn-1">
+          <svg data-scale="true" data-lines="1">
+            <text lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+          </svg>
+        </div>
+        <button class="te-player-eliminate" id="te-pe-1">Loại</button>
+        <button class="te-player-lock-buzzer" id="te-plb-1">Khoá chuông</button>
+      </div>
+
+      <div class="te-player-holder" id="te-player-2">
+        <p class="te-player-title" id="te-pt-2">NC2</p>
+        <div class="te-player-name" id="te-pn-2">
+          <svg data-scale="true" data-lines="1">
+            <text lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+          </svg>
+        </div>
+        <button class="te-player-eliminate" id="te-pe-2">Loại</button>
+        <button class="te-player-lock-buzzer" id="te-plb-2">Khoá chuông</button>
+      </div>
+
+      <div class="te-player-holder" id="te-player-3">
+        <p class="te-player-title" id="te-pt-3">NC3</p>
+        <div class="te-player-name" id="te-pn-3">
+          <svg data-scale="true" data-lines="1">
+            <text lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+          </svg>
+        </div>
+        <button class="te-player-eliminate" id="te-pe-3">Loại</button>
+        <button class="te-player-lock-buzzer" id="te-plb-3">Khoá chuông</button>
+      </div>
+
+      <div class="te-player-holder" id="te-player-4">
+        <p class="te-player-title" id="te-pt-4">NC4</p>
+        <div class="te-player-name" id="te-pn-4">
+          <svg data-scale="true" data-lines="1">
+            <text lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+          </svg>
+        </div>
+        <button class="te-player-eliminate" id="te-pe-4">Loại</button>
+        <button class="te-player-lock-buzzer" id="te-plb-4">Khoá chuông</button>
+      </div>
+
+      <textarea class="te-money-adjust" placeholder="Nhập tiền..."></textarea>
+      <button class="te-money-submit">Update tiền</button>
+
+      <button class="te-show-hide-tags">Ẩn name tag</button>
+      <button class="te-show-hide-money">Ẩn text tiền</button>
+      <button class="te-rearrange-tags">Ẩn người bị loại & sắp xếp lại name tag</button>
+
+      <div class="te-player-modify-holder" id="te-pm-1">
+        <p class="te-player-modify-title" id="te-pmt-1">Web P1</p>
+        <textarea class="te-player-modify-name-input" id="te-pmni-1" placeholder="Nhập tên..."></textarea>
+        <textarea class="te-player-modify-order-input" id="te-pmoi-1" placeholder="Nhập STT..."></textarea>
+      </div>
+
+      <div class="te-player-modify-holder" id="te-pm-2">
+        <p class="te-player-modify-title" id="te-pmt-2">Web P2</p>
+        <textarea class="te-player-modify-name-input" id="te-pmni-2" placeholder="Nhập tên..."></textarea>
+        <textarea class="te-player-modify-order-input" id="te-pmoi-2" placeholder="Nhập STT..."></textarea>
+      </div>
+
+      <div class="te-player-modify-holder" id="te-pm-3">
+        <p class="te-player-modify-title" id="te-pmt-3">Web P3</p>
+        <textarea class="te-player-modify-name-input" id="te-pmni-3" placeholder="Nhập tên..."></textarea>
+        <textarea class="te-player-modify-order-input" id="te-pmoi-3" placeholder="Nhập STT..."></textarea>
+      </div>
+
+      <div class="te-player-modify-holder" id="te-pm-4">
+        <p class="te-player-modify-title" id="te-pmt-4">Web P4</p>
+        <textarea class="te-player-modify-name-input" id="te-pmni-4" placeholder="Nhập tên..."></textarea>
+        <textarea class="te-player-modify-order-input" id="te-pmoi-4" placeholder="Nhập STT..."></textarea>
+      </div>
+
+      <button class="te-player-modify-update">Update thông tin người chơi</button>
+
+      <button class="te-allow-buzzer">Mở chuông</button>
+
+      <button class="te-reset">Reset</button>
+    </div>
+    
+    <div class="holder" id="holder-6">
+      <p class="holder-title">
+        KHÁC
+      </p> 
+      
+      <textarea class="message-to-host" placeholder="Gửi tin nhắn cho Host..."></textarea>
+      <button class="message-to-host-submit">Gửi</button>
+      
+      <input type="file" accept=".xls,.xlsx,.ods" class="get-c-info" />
+      <input type="file" accept=".xls,.xlsx,.ods" class="get-q-info" />
+      
+      <button class="load-c-info">Load TTNC</button>
+      <button class="load-q-info">Load CH</button>
+      
+    </div>
+    
+    <div class="popup" id="popup-passkey">
+      <p class="popup-title">Thay đổi mật khẩu</p>
+      <button class="popup-close">X</button>
+      
+      <div class="popup-passkey-player" id="ppp_player_1">
+        <textarea class="ppp-input" placeholder="Người chơi 1..."></textarea>
+        <button class="ppp-submit">Cập nhật</button>
+        
+        <div class="ppp-pass">
+          <svg data-top="0" data-ypos="0" data-lines="1" data-scale="true"> 
+            <text lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+          </svg>
+        </div>
+        <button class="ppp-random">Ngẫu nhiên</button>
+      </div>
+      
+      <div class="popup-passkey-player" id="ppp_player_2">
+        <textarea class="ppp-input" placeholder="Người chơi 2..."></textarea>
+        <button class="ppp-submit">Cập nhật</button>
+        
+        <div class="ppp-pass">
+          <svg data-top="0" data-ypos="0" data-lines="1" data-scale="true"> 
+            <text lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+          </svg>
+        </div>
+        <button class="ppp-random">Ngẫu nhiên</button>
+      </div>
+      
+      <div class="popup-passkey-player" id="ppp_player_3">
+        <textarea class="ppp-input" placeholder="Người chơi 3..."></textarea>
+        <button class="ppp-submit">Cập nhật</button>
+        
+        <div class="ppp-pass">
+          <svg data-top="0" data-ypos="0" data-lines="1" data-scale="true"> 
+            <text lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+          </svg>
+        </div>
+        <button class="ppp-random">Ngẫu nhiên</button>
+      </div>
+      
+      <div class="popup-passkey-player" id="ppp_player_4">
+        <textarea class="ppp-input" placeholder="Người chơi 4..."></textarea>
+        <button class="ppp-submit">Cập nhật</button>
+        
+        <div class="ppp-pass">
+          <svg data-top="0" data-ypos="0" data-lines="1" data-scale="true"> 
+            <text lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+          </svg>
+        </div>
+        <button class="ppp-random">Ngẫu nhiên</button>
+      </div>
+      
+      <div class="popup-passkey-player" id="ppp_chaser">
+        <textarea class="ppp-input" placeholder="Thợ săn..."></textarea>
+        <button class="ppp-submit">Cập nhật</button>
+        
+        <div class="ppp-pass">
+          <svg data-top="0" data-ypos="0" data-lines="1" data-scale="true"> 
+            <text lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+          </svg>
+        </div>
+        <button class="ppp-random">Ngẫu nhiên</button>
+      </div>
+      
+      <div class="popup-passkey-player" id="ppp_host">
+        <textarea class="ppp-input" placeholder="Dẫn chương trình..."></textarea>
+        <button class="ppp-submit">Cập nhật</button>
+        
+        <div class="ppp-pass">
+          <svg data-top="0" data-ypos="0" data-lines="1" data-scale="true"> 
+            <text lengthAdjust="spacingAndGlyphs" id="line_1" y="50%" dominant-baseline="central"></text>
+          </svg>
+        </div>
+        <button class="ppp-random">Ngẫu nhiên</button>
+      </div>
+      
+      <textarea class="popup-passkey-copy" disabled></textarea>
+      
+    </div>
+    
+  </div>
+  
+  <script>
+    document.body.style.zoom = "75%";
+  </script>
+  
+</body>

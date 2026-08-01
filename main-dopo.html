@@ -1,0 +1,267 @@
+<head>
+  <title>Main</title> 
+  
+	<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+	<script type="text/javascript" src="JS/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="JS/jquery.keyframes.min.js"></script>
+	<script type="text/javascript" src="JS/accounting.min.js"></script>
+	<script type="text/javascript" src="JS/init.js"></script>
+  
+	<script type="module" src="JS/firebase.js"></script>
+	<script type="module" src="JS/functions.js"></script>
+	<script type="module" src="JS/sound_fb.js"></script>
+	<script type="module" src="JS/main_fb.js"></script>
+	
+  <link rel="stylesheet" type="text/css" href="CSS/reset.css">
+	<link rel="stylesheet" type="text/css" href="CSS/site.css">
+	<link rel="stylesheet" type="text/css" href="CSS/site_main.css">
+	
+  <meta charset="utf-8" />
+  
+  <link rel="icon" type="image/x-icon" href="Assets/favicon.ico">
+</head>
+<body onkeydown="if(!event.target.matches('input')&&!event.target.matches('textarea')&&event.keyCode != 122 && event.keyCode != 116 && event.keyCode != 17)return!1" oncontextmenu="return!1" onselectstart="return!1" ondragstart="return!1">
+<!--
+<body>
+!-->
+  <div class="stage">
+    
+    <div class="holder" id="background">
+
+    </div>
+
+    <div class="holder" id="cb-holder">
+      <div class="cb-gpx">
+        <div class="cb-gpx-keyframe"></div>
+        <img class="cb-gpx-still" src="Assets/clockOn_00007_2684.png"></img>
+        <div class="cb-money">
+          <svg data-top="0" data-ypos="0" data-scale="true">
+            <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+          </svg>
+        </div>
+        <div class="cb-timer">
+          <svg data-top="0" data-ypos="0" data-scale="true">
+            <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="holder" id="h2h-holder">
+      <div class="ans-gpx">
+        <img class="ans-border" src="Assets/Ans Border.png"></img>
+
+        <div class="ans-normal-holder">
+          <div class="ans-normal" id="ans-normal-a"></div>
+          <div class="ans-normal" id="ans-normal-b"></div>
+          <div class="ans-normal" id="ans-normal-c"></div>
+        </div>
+
+        <div class="ans-content-holder" id="ans-content-holder-lower">
+          <div class="ans-content" id="ans-content-a">
+            <div class="ans-letter" id="ans-letter-a">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+            <div class="ans-text" id="ans-text-a">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+          </div>
+          <div class="ans-content" id="ans-content-b">
+            <div class="ans-letter" id="ans-letter-b">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+            <div class="ans-text" id="ans-text-b">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+          </div>
+          <div class="ans-content" id="ans-content-c">
+            <div class="ans-letter" id="ans-letter-c">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+            <div class="ans-text" id="ans-text-c">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-gpx">
+        <div class="q-gpx-keyframe"></div>
+        <img class="q-gpx-still" src="Assets/Question_00010_4701.png"></img>
+        <div class="q-text">
+          <svg data-top="0" data-ypos="22" data-scale="true" data-center="true" data-lines="2">
+            <text x="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" y="43%"></text>
+            <text x="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_2" y="90%"></text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="ans-gpx">
+        <div class="ans-lock-holder">
+          <div class="ans-lock" id="ans-lock-a">
+            <div class="ans-lock-keyframe"></div>
+          </div>
+          <div class="ans-lock" id="ans-lock-b">
+            <div class="ans-lock-keyframe"></div>
+          </div>
+          <div class="ans-lock" id="ans-lock-c">
+            <div class="ans-lock-keyframe"></div>
+          </div>
+        </div>
+
+        <div class="ans-correct-holder">
+          <div class="ans-correct" id="ans-correct-a">
+            <div class="ans-correct-keyframe"></div>
+          </div>
+          <div class="ans-correct" id="ans-correct-b">
+            <div class="ans-correct-keyframe"></div>
+          </div>
+          <div class="ans-correct" id="ans-correct-c">
+            <div class="ans-correct-keyframe"></div>
+          </div>
+        </div>
+
+        <div class="ans-chaser-holder">
+          <div class="ans-chaser" id="ans-chaser-a">
+            <div class="ans-chaser-keyframe"></div>
+          </div>
+          <div class="ans-chaser" id="ans-chaser-b">
+            <div class="ans-chaser-keyframe"></div>
+          </div>
+          <div class="ans-chaser" id="ans-chaser-c">
+            <div class="ans-chaser-keyframe"></div>
+          </div>
+        </div>
+
+        <div class="ans-content-holder" id="ans-content-holder-upper">
+          <div class="ans-content" id="ans-content-a">
+            <div class="ans-letter" id="ans-letter-a">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+            <div class="ans-text" id="ans-text-a">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+          </div>
+          <div class="ans-content" id="ans-content-b">
+            <div class="ans-letter" id="ans-letter-b">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+            <div class="ans-text" id="ans-text-b">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+          </div>
+          <div class="ans-content" id="ans-content-c">
+            <div class="ans-letter" id="ans-letter-c">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+            <div class="ans-text" id="ans-text-c">
+              <svg data-top="0" data-ypos="0" data-scale="true" data-lines="1">
+                <text y="50%" dominant-baseline="central" lengthAdjust="spacingAndGlyphs" id="line_1"></text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="name-tag-holder">
+        <div class="name-tag" id="name-tag-player">
+          <svg data-scale="true" data-lines="1">
+            <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+          </svg>
+        </div>
+        <div class="name-tag" id="name-tag-chaser">
+          <svg data-scale="true" data-lines="1">
+            <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="holder" id="fc-holder">
+      <div class="fc-timer">
+        <img class="fc-timer-bg" id="fc-timer-bg-green" src="Assets/ipad_bg_fc_clock@2x_4350.png"></img>
+        <img class="fc-timer-bg" id="fc-timer-bg-red" src="Assets/ipad_bg_fc_clock_red_4351.png"></img>
+        <svg data-ypos="0" data-scale="true">
+          <text x="50%" y="50%" text-anchor="middle" lengthAdjust="spacingAndGlyphs" id="line_1" dominant-baseline="central"></text>
+        </svg>
+      </div>
+
+      <div class="fc-bar">
+        <div class="fc-bar-holder" id="fc-bar-holder-blue">
+          <img class="fc-bar-bg" id="fc-bar-bg-blue" src="Assets/ipad_bg_fc_bar_blue@2x_4345.png"></img>
+          <div class="fc-bar-pushback"></div>
+        </div>
+
+        <div class="fc-step-holder" id="fc-step-holder-blue">
+          
+        </div>
+
+        <div class="fc-bar-holder" id="fc-bar-holder-red">
+          <img class="fc-bar-bg" id="fc-bar-bg-red" src="Assets/ipad_bg_fc_bar_red@2x_4348.png"></img>
+          <div class="fc-bar-win" id="fc-bar-win-red">
+            <div class="fc-bar-win-keyframe" id="fc-bar-win-keyframe-red"></div>
+          </div>
+        </div>
+
+        <div class="fc-step-holder" id="fc-step-holder-red">
+          
+        </div>
+
+        <div class="fc-inner">
+          <div class="fc-inner-keyframe"></div>
+        </div>
+
+        <div class="fc-shine-holder" id="fc-shine-holder-blue">
+          <img class="fc-shine" id="fc-shine-blue" src="Assets/ipad_bg_fc_bar_blue_shine@2x_4346.png"></img>
+        </div>
+
+        <div class="fc-shine-holder" id="fc-shine-holder-red">
+          <img class="fc-shine" id="fc-shine-red" src="Assets/ipad_bg_fc_bar_red_shine@2x_4349.png"></img> 
+        </div>
+        
+        <img class="fc-outline" src="Assets/ipad_bg_fc_bar_outline@2x_4347.png"></img> 
+
+        <div class="fc-light-holder" id="fc-light-holder-blue">
+          <img class="fc-light" id="fc-light-blue" src="Assets/white_blur_02_6246.png"></img>
+        </div>      
+
+        <div class="fc-light-holder" id="fc-light-holder-red">
+          <img class="fc-light" id="fc-light-red" src="Assets/white_blur_03_6247.png"></img>
+        </div>      
+      </div>
+    </div>
+
+    <div class="holder" id="wo-holder">
+      <div class="wipeon">
+        <div class="wipeon-keyframe"></div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.body.style.zoom = "100%";
+  </script>
+  
+</body>

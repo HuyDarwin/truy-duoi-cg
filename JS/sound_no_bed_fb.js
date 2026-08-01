@@ -99,27 +99,23 @@ $(function () {
                 con.PlaySound("Sounds/FINAL_CHASE_WIN_SEQUENCE.wav", 5);
                 upd("sfx_fc_win_bed", 0);
             }
-
-            if (data.sfx_h2h_bed == 1) {
+            if (data.sfx_h2h_bed_outlaw == 1) {
                 con.PlaySound("Sounds/INDIVIDUAL_CHASE_THEME.wav", 3);
-                upd("sfx_h2h_bed", 0);
+                upd("sfx_h2h_bed_outlaw", 0);
             }
-            if (data.sfx_h2h_chaser_bed == 1) {
+            if (data.sfx_h2h_chaser_bed_outlaw == 1) {
                 con.PlaySound("Sounds/INDIVIDUAL_CHASE_CHASER_CAN_CATCH.wav", 3);
-                upd("sfx_h2h_chaser_bed", 0);
+                upd("sfx_h2h_chaser_bed_outlaw", 0);
             }
-            if (data.sfx_cb_timer == 1) {
+            if (data.sfx_cb_timer_outlaw == 1) {
                 con.PlaySound("Sounds/CashBuilder_bed.wav", 3);
-                upd("sfx_cb_timer", 0);
+                upd("sfx_cb_timer_outlaw", 0);
             }
-            if (data.sfx_fc_timer == 1) {
+            if (data.sfx_fc_timer_outlaw == 1) {
                 con.PlaySound("Sounds/FinalChase_bed.wav", 3);
-                upd("sfx_fc_timer", 0);
+                upd("sfx_fc_timer_outlaw", 0);
             }
-            if (data.sfx_fc_cooldown_bed == 1) {
-                con.PlaySound("Sounds/tension_hold.wav", 4);
-                upd("sfx_fc_cooldown_bed", 0);
-            }
+
             if (data.sfx_fc_stop_cooldown == 1) {
                 con.DecreaseSoundVolume(4, 0.45, 0.05, 500);
                 setTimeout(function() {

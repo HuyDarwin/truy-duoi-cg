@@ -1,0 +1,55 @@
+@font-face {
+	font-family: "Univers 59";
+	src:
+		url("../Fonts/Univers 59 Ultra Condensed Regular.otf") format("woff"),
+		url("../Fonts/Univers 59 Ultra Condensed Regular.otf") format("opentype"),
+		url("../Fonts/Univers 59 Ultra Condensed Regular.otf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Helvetica Neue Bold";
+	src:
+		url("../Fonts/SVN-Helvetica Neue Bold.ttf") format("woff"),
+		url("../Fonts/SVN-Helvetica Neue Bold.ttf") format("opentype"),
+		url("../Fonts/SVN-Helvetica Neue Bold.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+body {
+	overflow: hidden;
+}
+
+div, img, button, textarea, iframe, select, option, input, label, video, svg, text {
+	position:absolute;
+	margin:auto;
+}
+
+svg {
+	overflow: visible;
+}
+
+video {
+	position:absolute;
+	margin:auto;
+	top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    height:100%;
+    width:100%;
+}
+
+p {
+	margin:auto;
+	position:absolute;
+}
+
+table {
+	margin:auto;
+	position:absolute;
+}

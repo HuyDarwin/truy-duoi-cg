@@ -1,0 +1,1702 @@
+body {
+  background-color:black;
+  background-size:cover;
+  background-position:center;
+}
+
+button {
+	cursor: pointer;
+	font-family:"Tahoma";
+	border-width:2%;
+  border-color:white;
+  background-color:black;
+  color:white;
+}
+
+button:enabled:hover {
+	background-color:white;
+  color:black;
+	transition: 0.25s;
+}
+
+button:enabled:hover svg text {
+	fill:black;
+	transition: 0.25s;
+}
+
+button:disabled {
+  opacity:0.5;
+}
+
+textarea{
+  color:black;
+  background-color:white;
+  resize:none;
+  
+  font-family:"Tahoma";
+  font-size:20px;
+  
+  border: 2px solid #b1b2b5;  
+}
+
+textarea:disabled{
+  color:white;
+  background-color:black;
+  resize:none;
+  
+  font-family:"Tahoma";
+  font-size:20px;
+  
+  border: 2px solid white;  
+}
+
+.rel button{
+	position:static;
+  margin-bottom:0.1vw;
+  font-size:28px;
+}
+
+.stage{
+  width:1920px;
+  height:1080px;
+  top:0px;
+  bottom:0px;
+  left:0px;
+  right:0px;
+  overflow:hidden;
+  z-index:0;
+}
+
+.holder{
+  border-inline:2px solid white;
+  background-color: black;
+}
+
+.holder-title {
+  top:0px;
+  left:0px;
+  width:100%;
+  height:38px;
+  
+  font-family:"Tahoma";
+  font-size:28px;
+  font-weight: bold;
+  line-height:38px;
+  text-align:center;
+  
+  background-color:white;
+}
+
+.popup{
+  width:100%;
+  height:100%;
+  top:1920px;
+  left:0%;
+  border-inline: 2px solid white;
+  background-color: black;
+  z-index:1;
+}
+
+.popup-title{
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100px;
+  
+  font-family:"Tahoma";
+  font-size:48px;
+  line-height:100px;
+  text-align:left;
+  padding-left:25px;
+  
+  background-color:white;
+}
+
+.popup-close{
+  top:5px;
+  right:5px;
+  width:90px;
+  height:90px;
+  
+  font-family:"Tahoma";
+  font-size:48px;
+  text-align:center;
+}
+
+#background{
+  background-color: #221C35;
+  
+  background-image:none;
+  background-repeat:no-repeat;
+	background-position: center;
+	background-size: cover;
+  
+  opacity:1;
+  
+  width:1920px;
+  height:1080px;
+  left:0%;
+  top:0%;
+}
+
+/* Holder-1 */
+
+#holder-1{
+  left: 0px;
+  top: 0px;
+  width: 520px;
+  height: 372px;
+}
+
+.iframe-holder{
+  left: 1px;
+  top: 38px;
+  width: 518px;
+  height: 291.87px;
+  background-color: #b1b2b5;
+}
+
+.screen-iframe{
+  width: 1920px;
+  height: 1080px;
+  top:0%;
+  left:0%;
+  scale:0.27;
+  opacity:0;
+  transform-origin: top left;
+}
+
+.change-main{
+  left: 8px;
+  top: 334px;
+  width: 137px;
+  height: 32px;
+  font-size: 18px;
+}
+
+.change-team{
+  left: 192px;
+  top: 334px;
+  width: 137px;
+  height: 32px;
+  font-size: 18px;
+}
+
+.change-ladder{
+  left: 376px;
+  top: 334px;
+  width: 137px;
+  height: 32px;
+  font-size: 18px;
+}
+
+/* Holder-2 */
+
+#holder-2{
+  left: 0px;
+  top: 372px;
+  width: 520px;
+  height: 463px;
+}
+
+#holder-2 .rel{
+  top:43px;
+  left:5px;
+  width:510px;
+  height:415px;
+  overflow:auto;
+  background-color:gray;
+}
+
+/* Holder-3 */
+
+#holder-3{
+  left: 0px;
+  top: 835px;
+  width: 520px;
+  height: 245px;
+}
+
+#holder-3 .rel{
+  top:43px;
+  left:5px;
+  width:510px;
+  height:197px;
+  overflow:auto;
+  background-color:gray;
+}
+
+/* Holder-4 */
+
+#holder-4{
+  left: 520px;
+  top: 0px;
+  width: 1400px;
+  height: 634px;
+}
+
+#holder-4 .rel{
+  left: 4px;
+  top: 41px;
+  width: 1393px;
+  height: 33px;
+  overflow:auto;
+  background-color:gray;
+}
+
+#holder-4 .rel button{
+  font-size:22px;
+}
+
+.control-holder{
+  left: 4px;
+  top: 77px;
+  width: 1396px;
+  height: 552px;
+  background-color: black;
+  border: 2px solid white;  
+}
+
+.ch-round{
+  width:100%;
+  height:100%;
+  left:0%;
+  top:1000%;
+}
+
+#chr-home{
+  top:1000%;
+}
+
+#chr-ic{
+  top:1000%;
+}
+
+.cash-builder{
+  left: 8px;
+  top: 5px;
+  width: 217px;
+  height: 498px;
+}
+
+.cb-title{
+  left: 0px;
+  top: 0px;
+  width: 217px;
+  height: 29px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 24px;
+  color:white;
+}
+
+.cnt-title{
+  left: 0px;
+  top: 29px;
+  width: 217px;
+  height: 29px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 16px;
+  color:white;
+}
+
+.select-player{
+  left: 0px;
+  width: 217px;
+  height: 32px;
+}
+
+.select-player svg{
+  width:100%;
+  height: 100%;
+  top:0%;
+  left:0%;
+}
+
+.select-player svg text{
+  font-family:"Tahoma";
+  font-size: 20px;
+  fill:white;
+}
+
+#sp-1{
+  top: 58px;
+}
+
+#sp-2{
+  top: 96px;
+}
+
+#sp-3{
+  top: 134px;
+}
+
+#sp-4{
+  top: 172px;
+}
+
+#cb-timer-holder{
+  left: 0px;
+  top: 212px;
+  width: 104px;
+  height: 72px;
+}
+
+.timer-title{
+  left: 0px;
+  top: 0px;
+  width: 103.95px;
+  height: 20.73px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 16px;
+  color:white;
+}
+
+.timer{
+  left: 0px;
+  top: 21.01px;
+  width: 104px;
+  height: 50.99px;
+  background: #00624aFF;
+}
+
+.timer svg{
+  width:100%;
+  height:100%;
+  top:0%;
+  left:0%;
+}
+
+.timer svg text{
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 40px;
+  fill:white;
+}
+
+.cb-reveal-gpx{
+  left: 113px;
+  top: 212px;
+  width: 104px;
+  height: 32px;
+  font-size:20px;
+}
+
+.cb-start-timer{
+  left: 113px;
+  top: 252px;
+  width: 104px;
+  height: 32px;
+  font-size:20px;
+}
+
+.cb-correct{
+  left: 0px;
+  top: 290px;
+  width: 104px;
+  height: 32px;
+  font-size:20px;
+}
+
+.cb-wrong{
+  left: 113px;
+  top: 290px;
+  width: 104px;
+  height: 32px;
+  font-size:20px;
+}
+
+.cb-pause-timer{
+  left: 0px;
+  top: 327px;
+  width: 104px;
+  height: 23px;
+  background: #5a00ffFF;
+  font-size: 10px;
+}
+
+.cb-resume-timer{
+  left: 113px;
+  top: 327px;
+  width: 104px;
+  height: 23px;
+  background: #5a00ffFF;
+  font-size: 10px;
+}
+
+.cb-hide-gpx{
+  left: 0px;
+  top: 356px;
+  width: 217px;
+  height: 32px;
+  font-size:20px;
+}
+
+.temp-money-holder{
+  left: 0px;
+  top: 393px;
+  width: 217px;
+  height: 66px;
+}
+
+.temp-money-title{
+  left: 0px;
+  top: 0px;
+  width: 216.9px;
+  height: 19px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 16px;
+  color:white;
+}
+
+.temp-money{
+  left: 0px;
+  top: 19.26px;
+  width: 217px;
+  height: 46.74px;
+  background: #006c8eFF;
+}
+
+.temp-money svg{
+  width:100%;
+  height:100%;
+  top:0%;
+  left:0%;
+}
+
+.temp-money svg text{
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 40px;
+  fill:white;
+}
+
+.temp-money-adjust{
+  left: 0px;
+  top: 466px;
+  width: 131px;
+  height: 32px;
+}
+
+.temp-money-submit{
+  left: 139px;
+  top: 466px;
+  width: 78px;
+  height: 32px;
+  font-size:20px;
+}
+
+.cb-chaser-walk-on{
+  left: 0px;
+  top: 503px;
+  width: 217px;
+  height: 32px;
+  font-size:20px;
+}
+
+.ic-question{
+  left: 244px;
+  top: 5px;
+  width: 1143px;
+  height: 135px;
+}
+
+.icq-q-text{
+  left: 0px;
+  top: 0px;
+  width: 389px;
+  height: 84px;
+}
+
+.icq-dad{
+  left: 0px;
+  top: 84px;
+  width: 74px;
+  height: 51px;
+  background:white;
+  color:black;
+  font-family:"Tahoma";
+  font-size: 18px;
+  line-height:25.5px;
+}
+
+.icq-correct-ans{
+  left: 74px;
+  top: 84px;
+  width: 315px;
+  height: 51px;
+}
+
+.icq-ans-holder{
+  left: 389px;
+  width: 389px;
+  height: 45px;
+}
+
+.icq-ans-letter{
+  left:0px;
+  width:74px;
+  height: 45px;
+  background:white;
+  color:black;
+  font-family:"Tahoma";
+  font-size: 18px;
+  text-align: center;
+  line-height:45px;
+}
+
+.icq-ans-text{
+  left:74px;
+  width:315px;
+  height: 45px;
+}
+
+#icq-ans-a{
+  top: 0px;
+}
+
+#icq-ans-b{
+  top: 45px;
+}
+
+#icq-ans-c{
+  top: 90px;
+}
+
+.icq-note{
+  left: 778px;
+  top: 0px;
+  width: 365px;
+  height: 135px;
+}
+
+.head-to-head{
+  left: 244px;
+  top: 144px;
+  width: 1152px;
+  height: 391px;
+}
+
+.h2h-title{
+  left: 0px;
+  top: 0px;
+  width: 1152px;
+  height: 29px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 24px;
+  color:white;
+}
+
+.high-offer-title{
+  left: 0px;
+  top: 29px;
+  width: 131px;
+  height: 29px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 18px;
+  color:white;
+  line-height:29px;
+}
+
+.ho-adjust{
+  left: 0px;
+  top: 58px;
+  width: 131px;
+  height: 32px;
+}
+
+.low-offer-title{
+  left: 0px;
+  top: 90px;
+  width: 131px;
+  height: 29px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 18px;
+  color:white;
+  line-height:29px;
+}
+
+.lo-adjust{
+  left: 0px;
+  top: 119px;
+  width: 131px;
+  height: 32px;
+}
+
+.update-offer{
+  left: 139px;
+  top: 29px;
+  width: 78px;
+  height: 122px;
+  font-size:20px;
+}
+
+.ladder-init{
+  left: 224px;
+  top: 29px;
+  width: 165px;
+  height: 32px;
+  font-size:18px;
+}
+
+.show-low-offer{
+  left: 224px;
+  top: 74px;
+  width: 165px;
+  height: 32px;
+  font-size:18px;
+}
+
+.show-high-offer{
+  left: 224px;
+  top: 119px;
+  width: 165px;
+  height: 32px;
+  font-size:18px;
+}
+
+.choose-high-offer{
+  left: 0px;
+  top: 158px;
+  width: 125px;
+  height: 32px;
+  font-size:18px;
+}
+
+.choose-medium-offer{
+  left: 132px;
+  top: 158px;
+  width: 125px;
+  height: 32px;
+  font-size:18px;
+}
+
+.choose-low-offer{
+  left: 264px;
+  top: 158px;
+  width: 125px;
+  height: 32px;
+  font-size:18px;
+}
+
+.the-chase-is-on{
+  left: 0px;
+  top: 197px;
+  width: 389px;
+  height: 32px;
+  font-size:20px;
+}
+
+.h2h-reveal-ques{
+  left: 0px;
+  top: 238px;
+  width: 187px;
+  height: 32px;
+  font-size:20px;
+}
+
+.h2h-reveal-ans{
+  left: 202px;
+  top: 238px;
+  width: 187px;
+  height: 32px;
+  font-size:20px;
+}
+
+#h2h-timer-holder{
+  left: 0px;
+  top: 279px;
+  width: 104px;
+  height: 72px;
+}
+
+.h2h-reveal-cont-ans{
+  left: 111px;
+  top: 279px;
+  width: 278px;
+  height: 32px;
+  font-size:20px;
+}
+
+.h2h-reveal-correct-ans{
+  left: 111px;
+  top: 319px;
+  width: 133px;
+  height: 32px;
+  font-size:15px;
+}
+
+.h2h-player-move{
+  left: 256px;
+  top: 319px;
+  width: 133px;
+  height: 32px;
+  font-size:15px;
+}
+
+.h2h-reveal-chaser-ans{
+  left: 0px;
+  top: 359px;
+  width: 125px;
+  height: 32px;
+  font-size:12px;
+}
+
+.h2h-hide-ques{
+  left: 132px;
+  top: 359px;
+  width: 125px;
+  height: 32px;
+  font-size:18px;
+}
+
+.h2h-chaser-move{
+  left: 264px;
+  top: 359px;
+  width: 125px;
+  height: 32px;
+  font-size:18px;
+}
+
+.ladder-title{
+  left: 402px;
+  top: 29px;
+  width: 131px;
+  height: 29px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 18px;
+  color:white;
+  line-height:29px;
+}
+
+.ladder-holder{
+  left: 402px;
+  top: 64px;
+  width: 165px;
+  height: 224px;
+}
+
+.ladder-step{
+  width:100%;
+  height:32px;
+  left:0px;
+  background: #006c8e;
+  border:2px solid white;
+  box-sizing: border-box;
+}
+
+.ladder-step svg{
+  width:98%;
+  height:98%;
+  top:1%;
+  left:1%;
+}
+
+.ladder-step svg text{
+  font-family:"Tahoma";
+  font-size: 18px;
+  font-weight:bold;
+  fill:white;
+}
+
+#ladder-step-1{
+  top:0px;
+}
+
+#ladder-step-2{
+  top:32px;
+}
+
+#ladder-step-3{
+  top:64px;
+}
+
+#ladder-step-4{
+  top:96px;
+}
+
+#ladder-step-5{
+  top:128px;
+}
+
+#ladder-step-6{
+  top:160px;
+}
+
+#ladder-step-7{
+  top:192px;
+}
+
+.l-player-title{
+  left: 402px;
+  top: 295px;
+  width: 60px;
+  height: 24px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 15px;
+  color:white;
+  line-height:24px;
+}
+
+.l-player-up{
+  left: 462px;
+  top: 295px;
+  width: 50px;
+  height: 24px;
+  font-size:15px;
+}
+
+.l-player-down{
+  left: 517px;
+  top: 295px;
+  width: 50px;
+  height: 24px;
+  font-size:15px;
+}
+
+.l-chaser-title{
+  left: 402px;
+  top: 323px;
+  width: 60px;
+  height: 24px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 15px;
+  color:white;
+  line-height:24px;
+}
+
+.l-chaser-up{
+  left: 462px;
+  top: 323px;
+  width: 50px;
+  height: 24px;
+  font-size:15px;
+}
+
+.l-chaser-down{
+  left: 517px;
+  top: 323px;
+  width: 50px;
+  height: 24px;
+  font-size:15px;
+}
+
+.ic-check-win-lose{
+  left: 402px;
+  top: 351px;
+  width: 165px;
+  height: 24px;
+  font-size:15px;
+}
+
+#qlh-cb {
+  left:820px;
+  top:145px;
+}
+
+#qlh-h2h {
+  left:1030px;
+  top:145px;
+}
+
+.ques-list-holder{
+  width: 200px;
+  height: 350px;
+}
+
+.ques-list-title{
+  left: 0px;
+  top: 0px;
+  width: 200px;
+  height: 24px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 15px;
+  color:white;
+  line-height:24px;
+}
+
+.ques-list{
+  top:25px;
+  left:0px;
+  width: 200px;
+  height:280px;
+}
+
+.ques-list option {
+	font-family:"Tahoma";
+	font-size:16px;
+  position:relative;
+}
+
+.ques-using-index{
+	font-family:"Tahoma";
+	font-size:20px;
+  text-align:center;
+  left:0px;
+  height:40px;
+  line-height:40px;
+  bottom:0px;
+  width:40px;
+  box-sizing: border-box;
+  border: 1px solid white;
+  color:white;
+}
+
+.ques-prev{
+	font-family:"Tahoma";
+	font-size:16px;
+  left:45px;
+  height:40px;
+  bottom:0px;
+  width:30px;
+}
+
+.ques-submit{
+	font-family:"Tahoma";
+	font-size:20px;
+  left:80px;
+  height:40px;
+  bottom:0px;
+  width:85px;
+}
+
+.ques-next{
+	font-family:"Tahoma";
+	font-size:16px;
+  left:170px;
+  height:40px;
+  bottom:0px;
+  width:30px;
+}
+
+.ic-reset{
+  right: 5px;
+  bottom: 5px;
+  width: 200px;
+  height: 30px;
+  font-size:20px;
+}
+
+#chr-fc{
+  top:1000%;
+}
+
+.fc-question{
+  left: 5px;
+  top: 5px;
+  width: 1382px;
+  height: 135px;
+}
+
+.fcq-q-text{
+  left: 0px;
+  top: 0px;
+  width: 644.14px;
+  height: 84px;
+}
+
+.fcq-dad{
+  left: 0px;
+  top: 84px;
+  width: 122.65px;
+  height: 51px;
+  background:white;
+  color:black;
+  font-family:"Tahoma";
+  font-size: 18px;
+  line-height:25.5px;
+}
+
+.fcq-correct-ans{
+  left: 122.65px;
+  top: 84px;
+  width: 521.49px;
+  height: 51px;
+}
+
+.fcq-note{
+  left: 644.14px;
+  top: 0px;
+  width: 737.86px;
+  height: 135px;
+}
+
+.fc-bar{
+  left: 5px;
+  top: 146px;
+  width: 1062px;
+  height: 73px;
+  background:black;
+  border:2px solid white;
+  box-sizing:border-box;
+}
+
+.fc-step {
+  height: 100%;
+  top:0%;
+  box-sizing: border-box;
+  border: 2px solid white;
+}
+
+.fc-step svg {
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+}
+
+.fc-step svg text {
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 60px;
+  fill:black;
+}
+
+.s-player-title{
+  left: 1075px;
+  top: 146px;
+  width: 54px;
+  height: 33px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 15px;
+  color:white;
+  line-height:33px;
+}
+
+.s-player-up{
+  left: 1129px;
+  top: 146px;
+  width: 36px;
+  height: 33px;
+  font-size:18px;
+}
+
+.s-player-down{
+  left: 1170px;
+  top: 146px;
+  width: 36px;
+  height: 33px;
+  font-size:18px;
+}
+
+.s-player-step-adjust{
+  left: 1211px;
+  top: 146px;
+  width: 80px;
+  height: 33px;
+  font-size:20px;
+}
+
+.s-player-step-submit{
+  left: 1296px;
+  top: 146px;
+  width: 91px;
+  height: 33px;
+  font-size:18px;
+}
+
+.s-chaser-title{
+  left: 1075px;
+  top: 186px;
+  width: 54px;
+  height: 33px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 15px;
+  color:white;
+  line-height:33px;
+}
+
+.s-chaser-up{
+  left: 1129px;
+  top: 186px;
+  width: 36px;
+  height: 33px;
+  font-size:18px;
+}
+
+.s-chaser-down{
+  left: 1170px;
+  top: 186px;
+  width: 36px;
+  height: 33px;
+  font-size:18px;
+}
+
+.s-chaser-step-adjust{
+  left: 1211px;
+  top: 186px;
+  width: 80px;
+  height: 33px;
+  font-size:20px;
+}
+
+.s-chaser-step-submit{
+  left: 1296px;
+  top: 186px;
+  width: 91px;
+  height: 33px;
+  font-size:18px;
+}
+
+.fc-check-lose{
+  left: 1075px;
+  top: 226px;
+  width: 312px;
+  height: 33px;
+  font-size:20px;
+}
+
+.fc-turn-title{
+  left: 5px;
+  top: 224px;
+  width: 131px;
+  height: 36px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 18px;
+  color:white;
+  line-height:36px;
+}
+
+.fc-turn{
+  left: 139px;
+  top: 225px;
+  width: 196px;
+  height: 35px;
+  background: #006c8eFF;
+}
+
+.fc-turn svg{
+  width:100%;
+  height:100%;
+  top:0%;
+  left:0%;
+}
+
+.fc-turn svg text{
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 20px;
+  fill:white;
+}
+
+#fc-timer-holder{
+  left: 5px;
+  top: 266px;
+  width: 104px;
+  height: 72px;
+}
+
+.fc-chaser-start{
+  left: 118px;
+  top: 266px;
+  width: 217px;
+  height: 32px;
+  font-size:20px;
+}
+
+.fc-reveal-steps{
+  left: 118px;
+  top: 306px;
+  width: 104px;
+  height: 32px;
+  font-size:20px;
+}
+
+.fc-reveal-timer{
+  left: 5px;
+  top: 344px;
+  width: 104px;
+  height: 32px;
+  font-size:20px;
+}
+
+.fc-start-timer{
+  left: 118px;
+  top: 344px;
+  width: 104px;
+  height: 32px;
+  font-size:20px;
+}
+
+.fc-correct{
+  left: 5px;
+  top: 381px;
+  width: 104px;
+  height: 32px;
+  font-size:20px;
+}
+
+.fc-wrong{
+  left: 118px;
+  top: 381px;
+  width: 104px;
+  height: 32px;
+  font-size:20px;
+}
+
+.fc-pause-timer{
+  left: 5px;
+  top: 418px;
+  width: 104px;
+  height: 23px;
+  background: #5a00ffFF;
+  font-size: 10px;
+}
+
+.fc-resume-timer{
+  left: 118px;
+  top: 418px;
+  width: 104px;
+  height: 23px;
+  background: #5a00ffFF;
+  font-size: 10px;
+}
+
+.fc-hide-gpx{
+  left: 5px;
+  top: 446px;
+  width: 104px;
+  height: 32px;
+  font-size:20px;
+}
+
+.fc-lose-money{
+  left: 118px;
+  top: 446px;
+  width: 104px;
+  height: 32px;
+  font-size:20px;
+}
+
+.fc-stop-cooldown{
+  left: 231px;
+  top: 306px;
+  width: 104px;
+  height: 52px;
+  font-size:18px;
+}
+
+.fc-player-correct{
+  left: 231px;
+  top: 366px;
+  width: 104px;
+  height: 52px;
+  font-size:18px;
+}
+
+.fc-continue{
+  left: 231px;
+  top: 426px;
+  width: 104px;
+  height: 52px;
+  font-size:18px;
+}
+
+.fc-auto-set-steps{
+  left: 5px;
+  top: 482px;
+  width: 330px;
+  height: 30px;
+  font-size:20px;
+}
+
+#qlh-fc {
+  left:345px;
+  top:224px;
+}
+
+.ques-list-holder-ver2{
+  width: 200px;
+  height: 320px;
+}
+
+.ques-list-holder-ver2 .ques-list {
+  height:250px;
+}
+
+.fc-reset{
+  right: 5px;
+  bottom: 5px;
+  width: 200px;
+  height: 30px;
+  font-size:20px;
+}
+
+/* Holder-5 */
+
+#holder-5{
+  left: 519px;
+  top: 634px;
+  width: 762px;
+  height: 446px;
+}
+
+.total-money-holder{
+  left: 9px;
+  top: 47px;
+  width: 221.11px;
+  height: 66px;
+}
+
+.total-money-title{
+  left: 0px;
+  top: 0px;
+  width: 216.9px;
+  height: 19px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 16px;
+  color:white;
+}
+
+.total-money{
+  left: 0px;
+  top: 19.26px;
+  width: 217px;
+  height: 46.74px;
+  background: #003fffFF;
+}
+
+.total-money svg{
+  width:100%;
+  height:100%;
+  top:0%;
+  left:0%;
+}
+
+.total-money svg text{
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 40px;
+  fill:white;
+}
+
+.te-player-holder{
+  left: 9px;
+  width: 221px;
+  height: 77px;
+}
+
+.te-player-title{
+  left: 0px;
+  top: 0px;
+  width: 221px;
+  height: 19px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 16px;
+  color:white;
+}
+
+.te-player-name{
+  left: 0px;
+  width: 221px;
+  height: 35px;
+  top: 19px;
+  background: #146200FF;
+}
+
+.te-player-name svg{
+  width:100%;
+  height:100%;
+  top:0%;
+  left:0%;
+}
+
+.te-player-name svg text{
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 20px;
+  fill:white;
+}
+
+.te-player-eliminate{
+  left: 0px;
+  top: 57px;
+  width: 103px;
+  height: 20px;
+  font-size:14px;
+}
+
+.te-player-lock-buzzer{
+  left: 118px;
+  top: 57px;
+  width: 103px;
+  height: 20px;
+  font-size:14px;
+}
+
+#te-player-1{
+  top: 121px;
+}
+
+#te-player-2{
+  top: 203px;
+}
+
+#te-player-3{
+  top: 285px;
+}
+
+#te-player-4{
+  top: 367px;
+}
+
+.te-money-adjust{
+  left: 243px;
+  top: 47px;
+  width: 360px;
+  height: 30px;
+  font-size:18px;
+}
+
+.te-money-submit{
+  left: 608px;
+  top: 47px;
+  width: 147px;
+  height: 30px;
+  font-size:18px;
+}
+
+.te-show-hide-tags{
+  left: 243px;
+  top: 83px;
+  width: 254px;
+  height: 30px;
+  font-size:18px;
+}
+
+.te-show-hide-money{
+  left: 501px;
+  top: 83px;
+  width: 254px;
+  height: 30px;
+  font-size:18px;
+}
+
+.te-rearrange-tags{
+  left: 243px;
+  top: 121px;
+  width: 512px;
+  height: 30px;
+  font-size:18px;
+}
+
+.te-player-modify-holder{
+  left: 243px;
+  width: 388px;
+  height: 30px;
+}
+
+.te-player-modify-title{
+  left: 0px;
+  top: 0px;
+  width: 57px;
+  height: 30px;
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 15px;
+  color:white;
+}
+
+.te-player-modify-name-input{
+  left: 57px;
+  top: 0px;
+  width: 220px;
+  height: 30px;
+  font-size:18px;
+}
+
+.te-player-modify-order-input{
+  left: 284px;
+  top: 0px;
+  width: 104px;
+  height: 30px;
+  font-size:18px;
+}
+
+#te-pm-1{
+  top: 160px;
+}
+
+#te-pm-2{
+  top: 197px;
+}
+
+#te-pm-3{
+  top: 234px;
+}
+
+#te-pm-4{
+  top: 271px;
+}
+
+.te-player-modify-update{
+  left: 638px;
+  top: 160px;
+  width: 117px;
+  height: 143px;
+  font-size:20px;
+}
+
+.te-allow-buzzer {
+  left: 243px;
+  top: 305px;
+  width: 200px;
+  height: 30px;
+  font-size:20px;
+}
+
+.te-reset{
+  right: 5px;
+  bottom: 5px;
+  width: 200px;
+  height: 30px;
+  font-size:20px;
+}
+
+/* Holder-6 */
+
+#holder-6{
+  left: 1281px;
+  top: 634px;
+  width: 639px;
+  height: 446px;
+}
+
+.message-to-host{
+  left: 6px;
+  top: 42px;
+  width: 503px;
+  height: 72px;
+}
+
+.message-to-host-submit{
+  left: 514px;
+  top: 42px;
+  width: 120px;
+  height: 72px;
+  font-size:32px;
+}
+
+.get-c-info, .get-q-info{
+  top:1000%;
+}
+
+.load-q-info{
+  top:119px;
+  left:5px;
+  width:120px;
+  height:50px;
+  font-size:24px;
+}
+
+.load-c-info{
+  top:119px;
+  left:130px;
+  width:130px;
+  height:50px;
+  font-size:24px;
+}
+
+/* popup passkey */
+.popup-passkey-player {
+  width:39%;
+  height:15%;
+}
+
+.ppp-input{
+  width:69%;
+  height:49%;
+  left:0%;
+  top:0%;
+  font-size:48px;
+}
+
+.ppp-submit{
+  width:29%;
+  height:49%;
+  left:70%;
+  top:0%;
+  font-size:36px;
+}
+
+.ppp-pass{
+  width:69%;
+  height:49%;
+  left:0%;
+  top:50%;
+}
+
+.ppp-pass svg {
+  width:100%;
+  height:100%;
+  left:0%;
+  top:0%
+}
+
+.ppp-pass svg text{
+  font-family:"Tahoma";
+  font-size:48px;
+  font-weight:bold;
+  fill:white;
+}
+
+.ppp-random{
+  width:29%;
+  height:49%;
+  left:70%;
+  top:50%;
+  font-size:36px;
+}
+
+#ppp_player_1{
+  top:10%;
+  left:0.5%;
+}
+
+#ppp_player_2{
+  top:26%;
+  left:0.5%;
+}
+
+#ppp_player_3{
+  top:10%;
+  left:40%;
+}
+
+#ppp_player_4{
+  top:26%;
+  left:40%;
+}
+
+#ppp_chaser{
+  top:42%;
+  left:0.5%;
+}
+
+#ppp_host{
+  top:42%;
+  left:40%;
+}
+
+.popup-passkey-copy{
+  left:79%;
+  top:10%;
+  width:20%;
+  height:90%;
+  font-size:36px !important; 
+}

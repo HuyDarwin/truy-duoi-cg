@@ -1,0 +1,270 @@
+body {
+  background-color: black;
+}
+
+.stage{
+  width:1920px;
+  height:1080px;
+  top:0px;
+  bottom:0px;
+  left:0px;
+  right:0px;
+  overflow:hidden;
+  z-index:0;
+}
+
+.holder{
+  width:1920px;
+  height:1080px;
+  top:0px;
+  left:0px;
+  bottom:0px;
+  right:0px;
+}
+
+#background{
+  background-image:none;
+
+  background-color:white;
+
+  background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+  opacity:1;
+}
+
+/* Cover Holder */
+
+#c-hold{
+  opacity:1;
+}
+
+.cover-bg{
+  width:50%;
+  height:100%;
+  top:0%;
+}
+
+#cover-bg-left{
+  left:0%;
+}
+
+#cover-bg-right{
+  right:0%;
+  transform: scaleX(-1);
+}
+
+/* Ladder Holder */
+
+#l-hold{
+  opacity:1;
+}
+
+.ladder{
+  width:25.5%;
+  height:82%;
+  left:37.25%;
+  top:7.5%;
+  background-color: black;
+}
+
+#ladder-step-1{
+  width:100%;
+  height:23.3%;
+  top:0%;
+  left:0%;
+}
+
+#ladder-step-2{
+  width:89%;
+  height:19.7%;
+  top:23.3%;
+  left:5.5%;
+}
+
+#ladder-step-3{
+  width:80.5%;
+  height:14.7%;
+  top:43%;
+  left:9.75%;
+}
+
+#ladder-step-4{
+  width:74%;
+  height:12.5%;
+  top:57.7%;
+  left:13%;
+}
+
+#ladder-step-5{
+  width:68.5%;
+  height:11.9%;
+  top:70.2%;
+  left:15.75%;
+}
+
+#ladder-step-6{
+  width:63.5%;
+  height:9.5%;
+  top:82.1%;
+  left:18.25%;
+}
+
+#ladder-step-7{
+  width:58.5%;
+  height:8.4%;
+  top:91.6%;
+  left:20.75%;
+}
+
+.ls-empty, .ls-normal, .ls-player, .ls-chaser, .ls-chaser-now, .ls-arrow{
+  width:100%;
+  height:100%;
+  top:0%;
+  left:0%;
+}
+
+.ls-empty{
+  opacity:1;
+}
+
+.ls-normal{
+  opacity:0;
+}
+
+.ls-player{
+  opacity:0;
+}
+
+.ls-chaser{
+  opacity:0;
+}
+
+.ls-chaser-now{
+  opacity:0;
+}
+
+.ls-arrow{
+  opacity:0;
+  clip-path: inset(0% 0% 0% 0%);
+}
+
+.ls-arrow img{
+  width:100%;
+  height:100%;
+  top:0%;
+  left:0%;
+}
+
+.ladder-content{
+  width:90%;
+  height:100%;
+  top:0%;
+  left:5%;
+}
+
+.lc-money, .lc-start{
+  width:60%;
+  height:90%;
+  top:5%;
+  left:20%;
+}
+
+.ladder-content svg{
+  width:100%;
+  height:100%;
+  top:0%;
+  left:0%;
+}
+
+.ladder-content svg text{
+  fill:white;
+  font-family:"Helvetica Neue Bold";
+  font-weight: bold;
+  letter-spacing: 2%;
+  text-shadow: -2px -2px 7px rgba(0,0,0,1);
+}
+
+#ladder-step-1 .ladder-content svg text{
+  font-size:96px;
+}
+
+#ladder-step-2 .ladder-content svg text{
+  font-size:80px;
+}
+
+#ladder-step-3 .ladder-content svg text{
+  font-size:66px;
+}
+
+#ladder-step-4 .ladder-content svg text{
+  font-size:54px;
+}
+
+#ladder-step-5 .ladder-content svg text{
+  font-size:50px;
+}
+
+#ladder-step-6 .ladder-content svg text{
+  font-size:44px;
+}
+
+#ladder-step-7 .ladder-content svg text{
+  font-size:38px;
+}
+
+.lc-arrow-holder{
+  width:16%;
+  height:100%;
+  top:0%;
+  opacity:0;
+}
+
+#lcah-left{
+  left:0%;
+}
+
+#lcah-right{
+  right:0%;
+}
+
+.lc-arrow{
+  width:70%;
+  height:54%;
+  top:23%;
+}
+
+#lca-left{
+  left:8%;
+  /* animation: ArrowLeftMove 2s infinite; */
+}
+
+@keyframes ArrowLeftMove {
+	0% {
+		transform: translateX(0%);
+	}
+	50% {
+		transform: translateX(30%);
+	}
+  100% {
+		transform: translateX(0%);
+  }
+}
+
+#lca-right{
+  right:8%;
+  transform:scaleX(-1);
+  /* animation: ArrowRightMove 2s infinite; */
+}
+
+@keyframes ArrowRightMove {
+	0% {
+		transform: scaleX(-1) translateX(0%);
+	}
+	50% {
+		transform: scaleX(-1) translateX(30%);
+	}
+  100% {
+		transform: scaleX(-1) translateX(0%);
+  }
+}

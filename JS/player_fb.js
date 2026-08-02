@@ -665,6 +665,13 @@ $(function () {
                 con.ModifyStepRed(data.red_steps, 1);
             }
 
+            if (data.buzzer_number == number_of_player) {
+                $(".player-buzzer").css("background-color", "#146200FF");
+            }
+            else {
+                $(".player-buzzer").css("background-color", "black");
+            }
+
             con.TextUpdateData(".fc-timer", con.formatTimer(data.fc_timer), 1);
         });       
       

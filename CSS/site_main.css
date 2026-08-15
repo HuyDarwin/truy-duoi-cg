@@ -28,6 +28,10 @@ body {
   background-image: url('../Assets/temp/The Chase Celebrity Christmas Special - 26th December 2022 6-48 screenshot.png');
   */
 
+  /*
+  background-color: blueviolet;
+  */
+
   background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -282,9 +286,12 @@ body {
   left:-10.5%;
   background-image:url("../Assets/ChaserHD SpriteSheet 75 one column.png");
   background-repeat: no-repeat;
-	animation: AnsChaserMSS 3s steps(74) infinite;
   transform-origin: top left;
   transform:scale(2.02);
+}
+
+.ans-chaser-mss-keyframe {
+	animation: AnsChaserMSS 3s steps(74) infinite;
 }
 
 @keyframes AnsChaserMSS {
@@ -628,10 +635,13 @@ body {
   width:100%;
   height:100%;
   background-image:url("../Assets/Inner (00-124) SpriteSheet 125 one column.png");
-	animation: InnerMSS 4s steps(125) infinite;
   transform-origin: top left;
   transform: scale(1.305, 1.475);
   opacity:0.5;
+}
+
+.inner-mss-keyframe {
+	animation: InnerMSS 4s steps(125) infinite;
 }
 
 @keyframes InnerMSS {

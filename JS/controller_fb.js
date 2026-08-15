@@ -459,6 +459,7 @@ $(function () {
           fc_turn_now = 1;
           upd("fc_turn_now", fc_turn_now);
 
+          dib(".fc-chaser-walk-on");
           dib(".fc-chaser-start");
           enb(".fc-reveal-steps");
           dib(".fc-reveal-timer");
@@ -1005,7 +1006,7 @@ $(function () {
                 cb_clock_running = false;
 
                 upd("sfx_stop_timer", 1);
-                dib(".cb-correct, .cb-wrong, .cb-pause-timer, .cb-resume-timer");
+                dib(".cb-pause-timer, .cb-resume-timer");
                 enb(".cb-hide-gpx");
             }
         }
@@ -1200,7 +1201,7 @@ $(function () {
                 }
 
                 upd("sfx_stop_timer", 1);
-                dib(".fc-correct, .fc-wrong, .fc-pause-timer, .fc-resume-timer");
+                dib(".fc-pause-timer, .fc-resume-timer");
                 enb(".fc-hide-gpx");
             }
         }
@@ -1284,17 +1285,29 @@ $(function () {
           upd("sfx_add_cash", 1);
           dib(this);
           dib(".cb-wrong");
-          $("#qlh-cb .ques-next").click();
-          UpdateCBQuestionsData(1);
+
           if (cb_clock_running) {
-            enb(".cb-correct");
-            enb(".cb-wrong");
+            $("#qlh-cb .ques-next").click();
+            UpdateCBQuestionsData(1);
           }
+
+          setTimeout(function() {
+            if (cb_clock_running) {
+              enb(".cb-correct");
+              enb(".cb-wrong");
+            }
+          }, 500);
         });
 
         $(".cb-wrong").click(function() {
-          $("#qlh-cb .ques-next").click();
-          UpdateCBQuestionsData(1);
+          if (cb_clock_running) {
+            $("#qlh-cb .ques-next").click();
+            UpdateCBQuestionsData(1);
+          }
+
+          if (!cb_clock_running) {
+            dib(".cb-correct, .cb-wrong");
+          }
         });
 
         $(".cb-pause-timer").click(function() {
@@ -1315,6 +1328,7 @@ $(function () {
           upd("act_hide_cb_gpx", 1);
           upd("sfx_wipe_off", 1);
           dib(this);
+          dib(".cb-correct, .cb-wrong");
           enb(".cb-chaser-walk-on");
         });
 
@@ -1826,8 +1840,11 @@ $(function () {
         $(".fc-correct").click(function() {
           dib(this);
           dib(".fc-wrong");
-          $("#qlh-fc .ques-next").click();
-          UpdateFCQuestionsData(1);
+
+          if (fc_clock_running) {
+            $("#qlh-fc .ques-next").click();
+            UpdateFCQuestionsData(1);
+          }
 
           if (fc_turn_now == 1) {
             if (fc_cont_left > 1) {
@@ -1883,8 +1900,14 @@ $(function () {
 
         $(".fc-wrong").click(function() {
           if (fc_turn_now == 1) {
-            $("#qlh-fc .ques-next").click();
-            UpdateFCQuestionsData(1);
+            if (fc_clock_running) {
+              $("#qlh-fc .ques-next").click();
+              UpdateFCQuestionsData(1);
+            }
+
+            if (!fc_clock_running) {
+              dib(".fc-correct, .fc-wrong");
+            }
 
             if (fc_turn_now == 1) {
               if (fc_cont_left > 1) {
@@ -1942,6 +1965,11 @@ $(function () {
           enb(".fc-pause-timer");
           enb(".fc-correct, .fc-wrong");
           upd("act_fc_timer_red", 0);
+
+          if (fc_clock_running) {
+            $("#qlh-fc .ques-next").click();
+            UpdateFCQuestionsData(1);
+          }
         });
 
         $(".fc-pause-timer").click(function() {
@@ -1966,7 +1994,7 @@ $(function () {
           dib(".fc-correct, .fc-wrong");
 
           if (fc_turn_now == 1) {
-            enb(".fc-chaser-start");
+            enb(".fc-chaser-walk-on");
 
             if (temp_money_opacity_counter == 1) {
               $(".te-show-hide-money").click();
@@ -1983,6 +2011,13 @@ $(function () {
           }
         });
 
+        $(".fc-chaser-walk-on").click(function() {
+          UpdateFCQuestionsData(0);
+          upd("sfx_chaser_walk_on", 1);
+          dib(this);
+          enb(".fc-chaser-start");
+        });
+
         $(".fc-chaser-start").click(function() {
           fc_turn_now = 2;
           upd("fc_turn_now", fc_turn_now);
@@ -1991,7 +2026,7 @@ $(function () {
           dib(this);
           
           enb(".fc-reveal-steps");
-          FillQuestionsToH2HList();
+          FillQuestionsToFCList();
         });
 
         $(".fc-lose-money").click(function() {

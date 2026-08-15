@@ -349,6 +349,7 @@ $(function () {
 
         con.AnswerChaser = function(answer) {
             $("#ans-chaser-" + answer).css("opacity", 1);
+            $(".ans-chaser-keyframe").addClass('ans-chaser-mss-keyframe');
         }
 
         con.HideH2HGpx = function() {
@@ -363,6 +364,7 @@ $(function () {
                 complete: function() {
                     $(".q-gpx-keyframe").css("opacity", 0);
                     $(".q-gpx").css("opacity", 0);
+                    $(".ans-chaser-keyframe").removeClass('ans-chaser-mss-keyframe');
                 }
             });
             $(".ans-gpx").playKeyframe({
@@ -409,6 +411,7 @@ $(function () {
             $(".wipeon").css({'top': '82.6%', 'height' : '12.8%'});
             con.WipeonAnimation();
             setTimeout(function() {
+                //$(".fc-inner-keyframe").addClass('inner-mss-keyframe');
                 $(".fc-bar").playKeyframe({
                     name: 'chase-ish-reveal',
                     duration: '350ms',
@@ -421,7 +424,10 @@ $(function () {
             $(".fc-bar").playKeyframe({
                 name: 'chase-ish-hide',
                 duration: '350ms',
-				easing: 'swing'
+				easing: 'swing',
+                complete : function() {
+                    //$(".fc-inner-keyframe").removeClass('inner-mss-keyframe');
+                }
             });
             $(".fc-timer").animate({"opacity" : "0"}, {duration : 350, queue : false});
         }

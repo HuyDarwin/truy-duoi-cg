@@ -1199,10 +1199,18 @@ textarea:disabled{
   height: 72px;
 }
 
-.fc-chaser-start{
+.fc-chaser-walk-on{
   left: 118px;
   top: 266px;
-  width: 217px;
+  width: 104px;
+  height: 32px;
+  font-size:20px;
+}
+
+.fc-chaser-start{
+  left: 231px;
+  top: 266px;
+  width: 104px;
   height: 32px;
   font-size:20px;
 }

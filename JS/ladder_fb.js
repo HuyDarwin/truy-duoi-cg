@@ -255,14 +255,14 @@ $(function () {
                         $("#ladder-step-" + i + " #lcah-left").animate({"opacity" : "1"}, {duration : 250, queue : false});
                         $("#ladder-step-" + i + " #lca-left").playKeyframe({
                             name: 'ArrowLeftMove',
-                            duration: '2000ms',
-                            iterationCount: 'infinite'
+                            duration: '2000ms'/*,
+                            iterationCount: 'infinite'*/
                         });
                         $("#ladder-step-" + i + " #lcah-right").animate({"opacity" : "1"}, {duration : 250, queue : false});
                         $("#ladder-step-" + i + " #lca-right").playKeyframe({
                             name: 'ArrowRightMove',
-                            duration: '2000ms',
-                            iterationCount: 'infinite'
+                            duration: '2000ms'/*,
+                            iterationCount: 'infinite'*/
                         });
                         $("#ladder-step-" + i + " .lc-money").playKeyframe({
                             name: 'ZoomLCText',
@@ -354,14 +354,14 @@ $(function () {
                         $("#ladder-step-" + i + " #lcah-left").css("opacity", 1);
                         $("#ladder-step-" + i + " #lca-left").playKeyframe({
                             name: 'ArrowLeftMove',
-                            duration: '2000ms',
-                            iterationCount: 'infinite'
+                            duration: '2000ms'/*,
+                            iterationCount: 'infinite'*/
                         });
                         $("#ladder-step-" + i + " #lcah-right").css("opacity", 1);
                         $("#ladder-step-" + i + " #lca-right").css("opacity", 1).playKeyframe({
                             name: 'ArrowRightMove',
-                            duration: '2000ms',
-                            iterationCount: 'infinite'
+                            duration: '2000ms'/*,
+                            iterationCount: 'infinite'*/
                         });
                     }
                     if (i == 3) {
@@ -469,14 +469,14 @@ $(function () {
                         $("#ladder-step-" + i + " #lcah-left").css("opacity", 1);
                         $("#ladder-step-" + i + " #lca-left").playKeyframe({
                             name: 'ArrowLeftMove',
-                            duration: '2000ms',
-                            iterationCount: 'infinite'
+                            duration: '2000ms'/*,
+                            iterationCount: 'infinite'*/
                         });
                         $("#ladder-step-" + i + " #lcah-right").css("opacity", 1);
                         $("#ladder-step-" + i + " #lca-right").css("opacity", 1).playKeyframe({
                             name: 'ArrowRightMove',
-                            duration: '2000ms',
-                            iterationCount: 'infinite'
+                            duration: '2000ms'/*,
+                            iterationCount: 'infinite'*/
                         });
                     }
                 }, j);
@@ -505,14 +505,14 @@ $(function () {
             $("#ladder-step-" + (old_step + 1) + " #lcah-left").animate({"opacity" : "1"}, {duration : 250, queue : false});
             $("#ladder-step-" + (old_step + 1) + " #lca-left").playKeyframe({
                 name: 'ArrowLeftMove',
-                duration: '2000ms',
-                iterationCount: 'infinite'
+                duration: '2000ms'/*,
+                iterationCount: 'infinite'*/
             });
             $("#ladder-step-" + (old_step + 1) + " #lcah-right").animate({"opacity" : "1"}, {duration : 250, queue : false});
             $("#ladder-step-" + (old_step + 1) + " #lca-right").playKeyframe({
                 name: 'ArrowRightMove',
-                duration: '2000ms',
-                iterationCount: 'infinite'
+                duration: '2000ms'/*,
+                iterationCount: 'infinite'*/
             });
             $("#ladder-step-" + (old_step + 1) + " .ls-normal").animate({"opacity" : "0"}, {duration : 375, queue : false});
             $("#ladder-step-" + (old_step + 1) + " .ls-player").animate({"opacity" : "1"}, {duration : 375, queue : false});
@@ -559,14 +559,14 @@ $(function () {
             $("#ladder-step-" + plnum + " #lcah-left").css("opacity", 1);
             $("#ladder-step-" + plnum + " #lca-left").playKeyframe({
                 name: 'ArrowLeftMove',
-                duration: '2000ms',
-                iterationCount: 'infinite'
+                duration: '2000ms'/*,
+                iterationCount: 'infinite'*/
             });
             $("#ladder-step-" + plnum + " #lcah-right").css("opacity", 1);
             $("#ladder-step-" + plnum + " #lca-right").playKeyframe({
                 name: 'ArrowRightMove',
-                duration: '2000ms',
-                iterationCount: 'infinite'
+                duration: '2000ms'/*,
+                iterationCount: 'infinite'*/
             });
 
             $("#ladder-step-" + plnum + " .lc-money").playKeyframe("reset");

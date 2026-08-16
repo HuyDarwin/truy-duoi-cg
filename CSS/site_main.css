@@ -153,6 +153,12 @@ body {
   left:1.1%;
 }
 
+.ans-normal-holder {
+  top:13%;
+  transform-origin: top right;
+  transform: scaleX(1.002) scaleY(1.12);
+}
+
 #ans-content-holder-upper .ans-content{
   opacity: 0;
 }

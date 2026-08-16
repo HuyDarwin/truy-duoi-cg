@@ -466,7 +466,28 @@ $(function () {
                 con.TextUpdateData("#holder-3-host .q-text", data.question_line_1, 1);
                 con.TextUpdateData("#holder-3-host .q-text", data.question_line_2, 2);
             }
-            
+
+            if (data.answer_a == "" && data.answer_b == "" && data.answer_c == "") {
+                $(".ans-gpx").css("opacity", 0);
+                if (data.question != "") {
+                    $(".nhac-nguoi-choi").css("opacity", 1);
+                }
+                else {
+                    $(".nhac-nguoi-choi").css("opacity", 0);
+                }
+            }
+            else {
+                $(".ans-gpx").css("opacity", 1);
+                $(".nhac-nguoi-choi").css("opacity", 0);
+            }
+
+            if (data.allow_answering == 1) {
+                $(".nhac-nguoi-choi-2").css("opacity", 1);
+            }
+            else {
+                $(".nhac-nguoi-choi-2").css("opacity", 0);
+            }
+
             con.TextUpdateData("#ans-letter-a", "A", 1);
             con.TextUpdateData("#ans-letter-b", "B", 1);
             con.TextUpdateData("#ans-letter-c", "C", 1);

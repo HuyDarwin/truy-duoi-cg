@@ -49,6 +49,8 @@ $(function () {
 
         var fc_blue_steps = 0;
         var fc_red_steps = 0;
+
+        var mode = 0;
             
         var holders = ["#holder-2", "#holder-3", "#holder-2-chaser", "#holder-2-host", "#holder-3-chaser", "#holder-3-host"];
       
@@ -349,6 +351,12 @@ $(function () {
             upd("buzz_epoch_" + number_of_player, Date.now());
             upd("buzzer_allow", 0);
         });
+
+        $(".update-offer").click(function() {
+            upd("high_offer", Number($(".ho-adjust").val()));
+            upd("low_offer", Number($(".lo-adjust").val()));
+            $(".ho-adjust, .lo-adjust").val("");
+        });
       
         //
       
@@ -469,6 +477,8 @@ $(function () {
 
             if (data.answer_a == "" && data.answer_b == "" && data.answer_c == "") {
                 $(".ans-gpx").css("opacity", 0);
+                $(".ans-submit").css("display", "none");
+                $(".nhac-nguoi-choi-3").css("opacity", 0);
                 if (data.question != "") {
                     $(".nhac-nguoi-choi").css("opacity", 1);
                 }
@@ -479,6 +489,9 @@ $(function () {
             else {
                 $(".ans-gpx").css("opacity", 1);
                 $(".nhac-nguoi-choi").css("opacity", 0);
+                $(".nhac-nguoi-choi-3").css("opacity", 1);
+
+                $(".ans-submit").css("display", "initial");
             }
 
             if (data.allow_answering == 1) {
@@ -503,6 +516,8 @@ $(function () {
 
             $(".controller-message").html(data.controller_message);
 
+            mode = data.mode;
+
             if (data.allow_answering == 1) {
                 if (number_of_player <= 4 && data.player_now == number_of_player && data.final_ans_player == "") {
                     enb(".ans-submit");
@@ -518,7 +533,16 @@ $(function () {
                 dib(".ans-submit");
             }
 
-
+            if (number_of_player == 5) {
+                if (data.chaser_offering_mode == 1) {
+                    enb(".ho-adjust, .lo-adjust");
+                    enb(".update-offer");
+                }
+                else {
+                    dib(".ho-adjust, .lo-adjust");
+                    dib(".update-offer");
+                }
+            }
 
             holders.forEach((holder_name) => {
                 $(holder_name + " " + ".player-tag").css("opacity", 1);          
@@ -545,6 +569,20 @@ $(function () {
                 con.TextUpdateData("#name-tag-player", "", 1);
             }
 
+            if (number_of_player == 6) {
+                con.TextUpdateData(".h2h-time-left", "Đếm ngược: " + con.formatTimer(data.h2h_timer), 1);
+            }
+            else {
+                con.TextUpdateData(".h2h-time-left", "Bạn còn: " + con.formatTimer(data.h2h_timer), 1);
+            }
+            
+            if (data.act_start_h2h_timer == 1) {
+                if (number_of_player == 6 || (data.final_ans_player == "" && number_of_player == data.player_now) || (final_ans_chaser == "" && number_of_player == 5)) {
+                    $(".h2h-time-left").css("opacity", 1);
+                }
+                upd("act_start_h2h_timer", 0);
+            }
+
             if(data.act_h2h_reveal_question == 1) {
                 con.ResetH2HGpx();
                 upd("act_h2h_reveal_question", 0);
@@ -559,6 +597,7 @@ $(function () {
             }
             if(data.act_hide_h2h_tags == 1) {
                 con.HideTags();
+                $(".h2h-time-left").animate({"opacity" : "0"}, {duration : 350, queue : false});
                 upd("act_hide_h2h_tags", 0);
             }
             if(data.act_reveal_cont_ans == 1) {
@@ -584,6 +623,9 @@ $(function () {
                     $("#player-tag-" + i + " .player-tag-red-gpx").css("opacity", 1);
                 }
             }
+
+            con.TextUpdateData(".high-offer-title", "High: " + accounting.formatMoney(data.high_offer), 1);
+            con.TextUpdateData(".low-offer-title", "Low: " + accounting.formatMoney(data.low_offer), 1);
 
             $(".ls-normal, .ls-player, .ls-chaser, .ls-chaser-now, .ls-arrow, .lc-money, .lc-start, .lc-arrow-holder").css("opacity", 0);
             $(".ls-empty").css("opacity", 1);
@@ -694,9 +736,42 @@ $(function () {
             }
 
             con.TextUpdateData(".fc-timer", con.formatTimer(data.fc_timer), 1);
-        });       
-      
+        });
+
         //
+        var delta = 50;
+        var last = 0;
+      
+        $(document).on('keydown',function(e){
+            if(e.keyCode == 13){
+            var now = new Date();
+            if(now - last > delta && $(".player-buzzer").prop("disabled") != true && mode == 3) {
+              $(".player-buzzer").click();
+              last = now;
+            }
+          }
+          else if(e.keyCode == 49 || e.keyCode == 65){
+            var now = new Date();
+            if(now - last > delta && $("#ans-submit-a").prop("disabled") != true && mode == 2) {
+              $("#ans-submit-a").click();
+              last = now;
+            }
+          }
+          else if(e.keyCode == 50 || e.keyCode == 66){
+            var now = new Date();
+            if(now - last > delta && $("#ans-submit-b").prop("disabled") != true && mode == 2) {
+              $("#ans-submit-b").click();
+              last = now;
+            }
+          }
+          else if(e.keyCode == 51 || e.keyCode == 67){
+            var now = new Date();
+            if(now - last > delta && $("#ans-submit-c").prop("disabled") != true && mode == 2) {
+              $("#ans-submit-c").click();
+              last = now;
+            }
+          }
+        });      
 
     }(window.CONTROLLER = window.CONTROLLER || {}));
 });

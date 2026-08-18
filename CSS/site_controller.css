@@ -45,7 +45,6 @@ textarea:disabled{
   resize:none;
   
   font-family:"Tahoma";
-  font-size:20px;
   
   border: 2px solid white;  
 }
@@ -596,11 +595,20 @@ textarea:disabled{
   top: 29px;
   width: 131px;
   height: 29px;
+}
+
+.high-offer-title svg{
+  width:100%;
+  height:100%;
+  top:0%;
+  left:0%;
+}
+
+.high-offer-title svg text{
   font-family:"Tahoma";
   font-weight:bold;
   font-size: 18px;
-  color:white;
-  line-height:29px;
+  fill:white;
 }
 
 .ho-adjust{
@@ -615,11 +623,20 @@ textarea:disabled{
   top: 90px;
   width: 131px;
   height: 29px;
+}
+
+.low-offer-title svg{
+  width:100%;
+  height:100%;
+  top:0%;
+  left:0%;
+}
+
+.low-offer-title svg text{
   font-family:"Tahoma";
   font-weight:bold;
   font-size: 18px;
-  color:white;
-  line-height:29px;
+  fill:white;
 }
 
 .lo-adjust{

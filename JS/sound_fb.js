@@ -32,7 +32,88 @@ $(function () {
 
         //
       
-        
+        function SoundsPreload() {
+            const audioTracks = [
+                "Sounds/Chase_Pre_Titles.wav",
+                "Sounds/Bumper.mp3",
+                "Sounds/CashBuilder_sting.wav",
+                "Sounds/who_is_chaser.wav",
+                "Sounds/chaser_walk_on.wav",
+                "Sounds/THE_CHASE_IS_ON.wav",
+                "Sounds/Player Wins Original.mp3",
+                "Sounds/PLAYER_WINS.wav",
+                "Sounds/CHASER_WINS_THEME.wav",
+                "Sounds/PLAYER_CAUGHT_THEME.wav",
+                "Sounds/closing_titles_extended.wav",
+                "Sounds/post_titles_bed.wav",
+                "Sounds/Chat_bed LOUDER.mp3",
+                "Sounds/decision_bed.wav",
+                "Sounds/FINAL_CHASE_WIN_SEQUENCE.wav",
+                "Sounds/INDIVIDUAL_CHASE_THEME.wav",
+                "Sounds/INDIVIDUAL_CHASE_CHASER_CAN_CATCH.wav",
+                "Sounds/CashBuilder_bed.wav",
+                "Sounds/FinalChase_bed.wav",
+                "Sounds/cb_strap_on.wav",
+                "Sounds/WOOSH_ON.wav",
+                "Sounds/WIPE_OFF.wav",
+                "Sounds/cb_cash_up.wav",
+                "Sounds/tree_reveal.wav",
+                "Sounds/LADDER_SHOW_LOW_OFFER.wav",
+                "Sounds/LADDER_SHOW_HIGH_OFFER.wav",
+                "Sounds/LADDER_HIGH_OFFER_SELECTED.wav",
+                "Sounds/LADDER_MIDDLE_OFFER_SELECTED.wav",
+                "Sounds/LADDER_LOW_OFFER_SELECTED.wav",
+                "Sounds/cb_time_up.wav",
+                "Sounds/PLAYER_LOCKS_ANSWER.wav",
+                "Sounds/CHASER_LOCKS_ANSWER.wav",
+                "Sounds/IC_COUNTDOWN.wav",
+                "Sounds/IC_COUNTDOWN_FINISHED.wav",
+                "Sounds/contestant_choice.wav",
+                "Sounds/contestant_correct.wav",
+                "Sounds/LADDER_CONTESTANT_MOVES.wav",
+                "Sounds/CHASER_ANSWER_REVEAL.wav",
+                "Sounds/LADDER_CHASER_MOVES.wav",
+                "Sounds/SHOW_CLOCK.wav",
+                "Sounds/FC_BLUE_STEP_ADDED.wav",
+                "Sounds/FC_RED_STEP_ADDED.wav",
+                "Sounds/CHASER_WINS_THEME.wav",
+                "Sounds/FC_STOP_THE_CLOCK.wav",
+                "Sounds/Buzzer.mp3",
+                "Sounds/Name Player/Name Player 1.mp3",
+                "Sounds/Name Player/Name Player 2.mp3",
+                "Sounds/Name Player/Name Player 3.mp3",
+                "Sounds/Name Player/Name Player 4.mp3"
+            ];
+
+            const preloadAudio = (url) => {
+                return new Promise((resolve, reject) => {
+                    const audio = new Audio();
+
+                    audio.preload = "auto";
+
+                    audio.addEventListener("canplaythrough", () => {
+                        resolve(audio);
+                    }, { once: true });
+
+                    audio.addEventListener("error", () => {
+                        reject(new Error(`Failed to load: ${url}`));
+                    }, { once: true });
+
+                    audio.src = url;
+                    audio.load();
+                });
+            };
+
+            Promise.all(audioTracks.map(preloadAudio))
+                .then(() => {
+                    console.log("All audio files preloaded successfully!");
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+        SoundsPreload();   
 
         //
 

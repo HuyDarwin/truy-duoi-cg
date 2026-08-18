@@ -383,6 +383,8 @@ $(function () {
 
           upd("fc_turn_now", fc_turn_now);
 
+          upd("chaser_offering_mode", 0);
+
           ResetQuestionsData();
         }
 
@@ -1330,6 +1332,8 @@ $(function () {
           dib(this);
           dib(".cb-correct, .cb-wrong");
           enb(".cb-chaser-walk-on");
+
+          upd("chaser_offering_mode", 1);
         });
 
         $(".cb-chaser-walk-on").click(function() {
@@ -1357,6 +1361,8 @@ $(function () {
           upd("allow_answering", 0);
 
           upd("player_ladder_mode", 1);
+
+          upd("chaser_offering_mode", 1);
         });
 
         $(".show-low-offer").click(function() {
@@ -1381,6 +1387,9 @@ $(function () {
           dib(".choose-high-offer, .choose-medium-offer, .choose-low-offer");
           upd("sfx_choose_high_offer", 1);
           upd("act_choose_high_offer", 1);
+
+          upd("chaser_offering_mode", 0);
+
           setTimeout(function() {
             temp_money = ho_offer;
             upd("temp_money", ho_offer);
@@ -1397,6 +1406,9 @@ $(function () {
           dib(".choose-high-offer, .choose-medium-offer, .choose-low-offer");
           upd("sfx_choose_medium_offer", 1);
           upd("act_choose_medium_offer", 1);
+
+          upd("chaser_offering_mode", 0);
+
           setTimeout(function() {
             upd("change_ladder_mode_to_2", 1);
             enb(".the-chase-is-on");
@@ -1411,6 +1423,9 @@ $(function () {
           dib(".choose-high-offer, .choose-medium-offer, .choose-low-offer");
           upd("sfx_choose_low_offer", 1);
           upd("act_choose_low_offer", 1);
+
+          upd("chaser_offering_mode", 0);
+
           setTimeout(function() {
             temp_money = lo_offer;
             upd("temp_money", lo_offer);
@@ -2272,6 +2287,9 @@ $(function () {
 
             final_ans_player = data.final_ans_player;
             final_ans_chaser = data.final_ans_chaser;
+
+            con.TextUpdateData(".high-offer-title", "High: " + accounting.formatMoney(data.high_offer), 1);
+            con.TextUpdateData(".low-offer-title", "Low: " + accounting.formatMoney(data.low_offer), 1);
 
             if (data.act_start_h2h_timer == 1) {
               RunH2HClock();

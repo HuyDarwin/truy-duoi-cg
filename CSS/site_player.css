@@ -28,12 +28,22 @@ button:disabled:hover {
 }
 
 textarea{
+  color:black;
+  background-color:white;
+  resize:none;
+  
+  font-family:"Tahoma";
+  font-size:20px;
+  
+  border: 2px solid #b1b2b5;  
+}
+
+textarea:disabled{
   color:white;
   background-color:black;
   resize:none;
   
   font-family:"Tahoma";
-  font-size:20px;
   
   border: 2px solid white;  
 }
@@ -359,7 +369,7 @@ textarea{
   font-family:"Tahoma";
   font-weight:bold;
   font-size: 40px;
-  color:white;
+  color:yellow;
   
   display: flex;
   align-items: center;
@@ -575,6 +585,44 @@ textarea{
   background-size: cover;
 }
 
+.h2h-time-left {
+  width:435px;
+  top: 156px;
+  height: 74px;
+  left: 1062px;
+  opacity: 0;
+}
+
+.h2h-time-left svg{
+  width: 100%;
+  height: 100%;
+  top:0%;
+  left:0%;
+}
+
+.h2h-time-left svg text{
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 40px;
+  fill:white;
+} 
+
+.nhac-nguoi-choi-3{
+  width: 834px;
+  height:50px;
+  left: 668px;
+  top: 480px;
+  line-height:50px;
+  
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 40px;
+  color:white;
+  
+  text-align: center;
+  opacity: 0;
+}
+
 .ans-submit{
   top: 540px;
   width: 270px;
@@ -611,11 +659,85 @@ textarea{
   font-family:"Tahoma";
   font-weight:bold;
   font-size: 40px;
-  color:white;
+  color:yellow;
   
   text-align: center;
 
   opacity:0;
+}
+
+.high-offer-title{
+  left: 668px;
+  top: 850px;
+  width: 345px;
+  height: 50px;
+  background-color: #006c8eFF;
+}
+
+.high-offer-title svg{
+  width:100%;
+  height:100%;
+  top:0%;
+  left:0%;
+}
+
+.high-offer-title svg text{
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 32px;
+  fill:white;
+}
+
+.ho-adjust{
+  left: 1018px;
+  top: 850px;
+  width: 295px;
+  height: 50px;
+  font-size: 32px;
+}
+
+.low-offer-title{
+  left: 668px;
+  top: 910px;
+  width: 345px;
+  height: 50px;
+  background-color: #006c8eFF;
+}
+
+.low-offer-title svg{
+  width:100%;
+  height:100%;
+  top:0%;
+  left:0%;
+}
+
+.low-offer-title svg text{
+  font-family:"Tahoma";
+  font-weight:bold;
+  font-size: 32px;
+  fill:white;
+}
+
+.lo-adjust{
+  left: 1018px;
+  top: 910px;
+  width: 295px;
+  height: 50px;
+  font-size: 32px;
+}
+
+.ho-adjust:disabled, .lo-adjust:disabled{
+  opacity:0.5; 
+}
+
+.update-offer{
+  left: 1318px;
+  top: 850px;
+  width: 184px;
+  height: 110px;
+  font-size: 32px;
+  text-align:center;
+  font-weight: bold;
 }
 
 .ladder{

@@ -51,6 +51,10 @@ $(function () {
         var fc_red_steps = 0;
 
         var mode = 0;
+
+        var question = "";
+
+        var q_counter = 0;
             
         var holders = ["#holder-2", "#holder-3", "#holder-2-chaser", "#holder-2-host", "#holder-3-chaser", "#holder-3-host"];
       
@@ -453,14 +457,45 @@ $(function () {
             }
 
             if (data.question != "") {
-                con.TextUpdateData("#holder-2 .q-text", data.question, 0);
-                con.TextUpdateData("#holder-3 .q-text", data.question, 0);
-                con.TextUpdateData("#holder-2-chaser .q-text", data.question, 0);
-                con.TextUpdateData("#holder-3-chaser .q-text", data.question, 0);
-                con.TextUpdateData("#holder-2-host .q-text", data.question, 0);
-                con.TextUpdateData("#holder-3-host .q-text", data.question, 0);
+                if (data.question != question && data.question != "" && number_of_player != 6) {
+                    if (q_counter == 0) {
+                        q_counter = 1;
+
+                        con.TextUpdateData("#holder-2 .q-text", "(DCT đọc xong thì câu hỏi mới hiện)", 0);
+                        con.TextUpdateData("#holder-3 .q-text", "(DCT đọc xong thì câu hỏi mới hiện)", 0);
+                        con.TextUpdateData("#holder-2-chaser .q-text", "(DCT đọc xong thì câu hỏi mới hiện)", 0);
+                        con.TextUpdateData("#holder-3-chaser .q-text", "(DCT đọc xong thì câu hỏi mới hiện)", 0);
+                        con.TextUpdateData("#holder-2-host .q-text", "(DCT đọc xong thì câu hỏi mới hiện)", 0);
+                        con.TextUpdateData("#holder-3-host .q-text", "(DCT đọc xong thì câu hỏi mới hiện)", 0);
+
+                        var len = data.question.length;
+
+                        setTimeout(function() {
+                            con.TextUpdateData("#holder-2 .q-text", data.question, 0);
+                            con.TextUpdateData("#holder-3 .q-text", data.question, 0);
+                            con.TextUpdateData("#holder-2-chaser .q-text", data.question, 0);
+                            con.TextUpdateData("#holder-3-chaser .q-text", data.question, 0);
+                            con.TextUpdateData("#holder-2-host .q-text", data.question, 0);
+                            con.TextUpdateData("#holder-3-host .q-text", data.question, 0);
+                            
+                            question = data.question;
+
+                            q_counter = 0;
+                        }, len * 50);
+                    }
+                }
+                else {
+                    con.TextUpdateData("#holder-2 .q-text", data.question, 0);
+                    con.TextUpdateData("#holder-3 .q-text", data.question, 0);
+                    con.TextUpdateData("#holder-2-chaser .q-text", data.question, 0);
+                    con.TextUpdateData("#holder-3-chaser .q-text", data.question, 0);
+                    con.TextUpdateData("#holder-2-host .q-text", data.question, 0);
+                    con.TextUpdateData("#holder-3-host .q-text", data.question, 0);
+
+                    question = data.question;
+                }
             }
-            else {
+            else {                
                 con.TextUpdateData("#holder-2 .q-text", data.question_line_1, 1);
                 con.TextUpdateData("#holder-2 .q-text", data.question_line_2, 2);
                 con.TextUpdateData("#holder-3 .q-text", data.question_line_1, 1);

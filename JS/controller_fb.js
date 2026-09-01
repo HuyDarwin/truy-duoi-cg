@@ -150,6 +150,8 @@ $(function () {
         var h2h_questions = [];
         var fc_questions = [];
 
+        var h2h_answer_len = 0;
+
         var final_ans_player = "";
         var final_ans_chaser = "";
 
@@ -258,6 +260,8 @@ $(function () {
             final_ans_chaser = "";
             upd("final_ans_player", "");
             upd("final_ans_chaser", "");
+
+            h2h_answer_len = 0;
           }
           else if (index == 1) {
             upd("question", "");
@@ -273,6 +277,8 @@ $(function () {
             final_ans_chaser = "";
             upd("final_ans_player", "");
             upd("final_ans_chaser", "");
+
+            h2h_answer_len = 0;
           }
           else if (index == 2) {
             upd("question", "");
@@ -288,6 +294,8 @@ $(function () {
             final_ans_chaser = "";
             upd("final_ans_player", "");
             upd("final_ans_chaser", "");
+
+            h2h_answer_len = String(h2h_questions[player_now - 1][r].AnswerA).length + String(h2h_questions[player_now - 1][r].AnswerB).length + String(h2h_questions[player_now - 1][r].AnswerC).length;
           }
         }
 
@@ -694,7 +702,9 @@ $(function () {
           var reader = new FileReader();
           reader.onload = function(e) {
             var data = e.target.result;
-            var workbook = XLSX.read(e.target.result);
+            var workbook = XLSX.read(e.target.result, { 
+              sheetStubs: true 
+            });
             var sheet = workbook.Sheets[workbook.SheetNames[0]];
 
             contestants = [];
@@ -791,8 +801,11 @@ $(function () {
           var reader = new FileReader();
           reader.onload = function(e) {
             var data = e.target.result;
-            var workbook = XLSX.read(e.target.result);
+            var workbook = XLSX.read(e.target.result, { 
+              sheetStubs: true 
+            });
             var sheet;
+            var thua;
 
             cb_questions = [];
             h2h_questions = [];
@@ -811,53 +824,59 @@ $(function () {
             fc_questions.push([]);
             fc_questions.push([]);
 
+            sheet = workbook.Sheets[workbook.SheetNames[0]];
+
             for (var no = 1; no <= 4; no++) {
-              sheet = workbook.Sheets[workbook.SheetNames[2 * (no - 1)]];
+              thua = (no - 1) * 52;
 
               for (var i = 1; i <= 50; i++) {
                 cb_questions[no - 1].push({
-                  Question: (sheet['B' + (i + 3)].v == ".") ? "" : sheet['B' + (i + 3)].v,
-                  CorrectAnsText: (sheet['C' + (i + 3)].v == ".") ? "" : sheet['C' + (i + 3)].v,
-                  Note: (sheet['D' + (i + 3)].v == ".") ? "" : sheet['D' + (i + 3)].v
+                  Question: (sheet['B' + (thua + i + 3)].v == ".") ? "" : sheet['B' + (thua + i + 3)].v,
+                  CorrectAnsText: (sheet['C' + (thua + i + 3)].v == ".") ? "" : sheet['C' + (thua + i + 3)].v,
+                  Note: (sheet['D' + (thua + i + 3)].v == ".") ? "" : sheet['D' + (thua + i + 3)].v
                 });
               }
             }
 
+            sheet = workbook.Sheets[workbook.SheetNames[1]];
+
             for (var no = 1; no <= 4; no++) {
-              sheet = workbook.Sheets[workbook.SheetNames[2 * (no - 1) + 1]];
+              thua = (no - 1) * 102;
 
               for (var i = 1; i <= 50; i++) {
                 var ca = "";
-                if (sheet['C' + (2 * i + 3)].v == "x") {
+                if (sheet['C' + (thua + 2 * i + 3)].v == "x") {
                   ca = "a";
                 }
-                else if (sheet['D' + (2 * i + 3)].v == "x") {
+                else if (sheet['D' + (thua + 2 * i + 3)].v == "x") {
                   ca = "b";
                 }
-                else if (sheet['E' + (2 * i + 3)].v == "x") {
+                else if (sheet['E' + (thua + 2 * i + 3)].v == "x") {
                   ca = "c";
                 }
 
                 h2h_questions[no - 1].push({
-                  Question_LineOne: (sheet['B' + (2 * i + 2)].v == ".") ? "" : sheet['B' + (2 * i + 2)].v,
-                  Question_LineTwo: (sheet['B' + (2 * i + 3)].v == ".") ? "" : sheet['B' + (2 * i + 3)].v,
-                  AnswerA: (sheet['C' + (2 * i + 2)].v == ".") ? "" : sheet['C' + (2 * i + 2)].v,
-                  AnswerB: (sheet['D' + (2 * i + 2)].v == ".") ? "" : sheet['D' + (2 * i + 2)].v,
-                  AnswerC: (sheet['E' + (2 * i + 2)].v == ".") ? "" : sheet['E' + (2 * i + 2)].v,
+                  Question_LineOne: (sheet['B' + (thua + 2 * i + 2)].v == ".") ? "" : sheet['B' + (thua + 2 * i + 2)].v,
+                  Question_LineTwo: (sheet['B' + (thua + 2 * i + 3)].v == ".") ? "" : sheet['B' + (thua + 2 * i + 3)].v,
+                  AnswerA: (sheet['C' + (thua + 2 * i + 2)].v == ".") ? "" : sheet['C' + (thua + 2 * i + 2)].v,
+                  AnswerB: (sheet['D' + (thua + 2 * i + 2)].v == ".") ? "" : sheet['D' + (thua + 2 * i + 2)].v,
+                  AnswerC: (sheet['E' + (thua + 2 * i + 2)].v == ".") ? "" : sheet['E' + (thua + 2 * i + 2)].v,
                   CorrectAns: ca,
-                  Note: (sheet['F' + (2 * i + 2)].v == ".") ? "" : sheet['F' + (2 * i + 2)].v
+                  Note: (sheet['F' + (thua + 2 * i + 2)].v == ".") ? "" : sheet['F' + (thua + 2 * i + 2)].v
                 });
               }
             }
 
+            sheet = workbook.Sheets[workbook.SheetNames[2]];
+
             for (var no = 1; no <= 2; no++) {
-              sheet = workbook.Sheets[workbook.SheetNames[no + 7]];
+              thua = (no - 1) * 102;
 
               for (var i = 1; i <= 100; i++) {
                 fc_questions[no - 1].push({
-                  Question: (sheet['B' + (i + 3)].v == ".") ? "" : sheet['B' + (i + 3)].v,
-                  CorrectAnsText: (sheet['C' + (i + 3)].v == ".") ? "" : sheet['C' + (i + 3)].v,
-                  Note: (sheet['D' + (i + 3)].v == ".") ? "" : sheet['D' + (i + 3)].v
+                  Question: (sheet['B' + (thua + i + 3)].v == ".") ? "" : sheet['B' + (thua + i + 3)].v,
+                  CorrectAnsText: (sheet['C' + (thua + i + 3)].v == ".") ? "" : sheet['C' + (thua + i + 3)].v,
+                  Note: (sheet['D' + (thua + i + 3)].v == ".") ? "" : sheet['D' + (thua + i + 3)].v
                 });
               }
             }
@@ -1464,7 +1483,9 @@ $(function () {
         $(".h2h-reveal-ans").click(function() {
           dib(this);
           UpdateH2HQuestionsData(2);
-          upd("allow_answering", 1);
+          setTimeout(function() {
+            upd("allow_answering", 1);
+          }, 500 + h2h_answer_len * 50);
           upd("act_h2h_reveal_ans", 1);
         });
 
@@ -1560,7 +1581,9 @@ $(function () {
           upd("act_h2h_hide_question", 1);
           upd("sfx_wipe_off", 1);
 
-          UpdateH2HQuestionsData(0);
+          setTimeout(function() {
+            UpdateH2HQuestionsData(0);
+          }, 1000);
           dib(this);
 
           if (ic_wins == 1) {

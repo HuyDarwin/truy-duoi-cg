@@ -230,6 +230,23 @@ $(function () {
           }, 25);
         }
 
+        // Sheet Stubs Cleaning
+
+        con.CleanSheetStubs = function(sheet) {
+            for (let cellRef in sheet) {
+                if (cellRef[0] === '!') continue;
+
+                const cell = sheet[cellRef];
+
+                if (cell && cell.t === 'z') {
+                    cell.t = 's';
+                    cell.v = '';
+                }
+            }
+
+            return sheet;
+        }
+
 		    // SVG Text
       
         con.SVGTextCustomize = function (destination) {

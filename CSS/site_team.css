@@ -203,6 +203,18 @@ body {
   clip-path:inset(0 0 0 0);
 }
 
+.team-table-static{
+  width:105%;
+  height:105%;
+  top:-2.5%;
+  left:-2.5%;
+  background-image:url("../Assets/Value_Box Blue SpriteSheet 71 one column.png");
+  background-position-y: 0px;
+  transform-origin: top left;
+  transform: scale(3.55, 2.15);
+  filter:brightness(0.75);
+}
+
 .team-table-keyframe{
   width:105%;
   height:105%;

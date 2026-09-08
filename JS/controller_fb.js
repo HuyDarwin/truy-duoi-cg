@@ -707,6 +707,8 @@ $(function () {
             });
             var sheet = workbook.Sheets[workbook.SheetNames[0]];
 
+            con.CleanSheetStubs(sheet);
+
             contestants = [];
 
             for(var i = 1; i <= 4; i++) {
@@ -826,6 +828,8 @@ $(function () {
 
             sheet = workbook.Sheets[workbook.SheetNames[0]];
 
+            con.CleanSheetStubs(sheet);
+
             for (var no = 1; no <= 4; no++) {
               thua = (no - 1) * 52;
 
@@ -839,6 +843,8 @@ $(function () {
             }
 
             sheet = workbook.Sheets[workbook.SheetNames[1]];
+
+            con.CleanSheetStubs(sheet);
 
             for (var no = 1; no <= 4; no++) {
               thua = (no - 1) * 102;
@@ -868,6 +874,8 @@ $(function () {
             }
 
             sheet = workbook.Sheets[workbook.SheetNames[2]];
+
+            con.CleanSheetStubs(sheet);
 
             for (var no = 1; no <= 2; no++) {
               thua = (no - 1) * 102;

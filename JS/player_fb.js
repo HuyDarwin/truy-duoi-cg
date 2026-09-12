@@ -359,7 +359,7 @@ $(function () {
         $(".update-offer").click(function() {
             upd("high_offer", Number($(".ho-adjust").val()));
             upd("low_offer", Number($(".lo-adjust").val()));
-            $(".ho-adjust, .lo-adjust").val("");
+            upd("act_chaser_update_offer", 1);
         });
       
         //
@@ -430,7 +430,14 @@ $(function () {
                 con.TextUpdateData("#holder-3 .player-number", "Người chơi " + ord, 1);
                 con.TextUpdateData("#holder-3 .player-name", eval("data.cont_name_" + ord).toUpperCase(), 1);
 
-                if (eval("data.cont_eli_status_" + number_of_player) == 1 || eval("data.cont_lock_buzzer_status_" + number_of_player) == 1 || data.buzzer_allow == 0) {
+                var num_of_eli = 0;
+                for (var i = 1; i <= 4; i++) {
+                    if (eval("data.cont_eli_status_" + i) == 1) {
+                        num_of_eli++;
+                    }
+                }
+
+                if (eval("data.cont_eli_status_" + number_of_player) == 1 || eval("data.cont_lock_buzzer_status_" + number_of_player) == 1 || data.buzzer_allow == 0 || num_of_eli == 3) {
                     dib(".player-buzzer");
                 }
                 else {
@@ -457,57 +464,47 @@ $(function () {
             }
 
             if (data.question != "") {
-                if (data.question != question && data.question != "" && number_of_player != 6) {
-                    if (q_counter == 0) {
-                        q_counter = 1;
-
-                        con.TextUpdateData("#holder-2 .q-text", "(DCT đọc xong thì câu hỏi mới hiện)", 0);
-                        con.TextUpdateData("#holder-3 .q-text", "(DCT đọc xong thì câu hỏi mới hiện)", 0);
-                        con.TextUpdateData("#holder-2-chaser .q-text", "(DCT đọc xong thì câu hỏi mới hiện)", 0);
-                        con.TextUpdateData("#holder-3-chaser .q-text", "(DCT đọc xong thì câu hỏi mới hiện)", 0);
-                        con.TextUpdateData("#holder-2-host .q-text", "(DCT đọc xong thì câu hỏi mới hiện)", 0);
-                        con.TextUpdateData("#holder-3-host .q-text", "(DCT đọc xong thì câu hỏi mới hiện)", 0);
-
-                        var len = data.question.length;
-
-                        setTimeout(function() {
-                            con.TextUpdateData("#holder-2 .q-text", data.question, 0);
-                            con.TextUpdateData("#holder-3 .q-text", data.question, 0);
-                            con.TextUpdateData("#holder-2-chaser .q-text", data.question, 0);
-                            con.TextUpdateData("#holder-3-chaser .q-text", data.question, 0);
-                            con.TextUpdateData("#holder-2-host .q-text", data.question, 0);
-                            con.TextUpdateData("#holder-3-host .q-text", data.question, 0);
-                            
-                            question = data.question;
-
-                            q_counter = 0;
-                        }, len * 50);
-                    }
+                if (number_of_player <= 4 && data.act_hide_ques_in_player_fc_2 == 1) {
+                    holders.forEach((holder_name) => {
+                        con.TextUpdateData(holder_name + " .q-text", "(Ở phần này, đồ hoạ sẽ không hiện câu hỏi cho bạn. Hãy nghe kỹ DCT đọc câu hỏi. Nếu đến lượt đội mình trả lời mà các bạn không nghe rõ câu hỏi, có thể yêu cầu DCT đọc lại.)", 0);
+                    });    
                 }
                 else {
-                    con.TextUpdateData("#holder-2 .q-text", data.question, 0);
-                    con.TextUpdateData("#holder-3 .q-text", data.question, 0);
-                    con.TextUpdateData("#holder-2-chaser .q-text", data.question, 0);
-                    con.TextUpdateData("#holder-3-chaser .q-text", data.question, 0);
-                    con.TextUpdateData("#holder-2-host .q-text", data.question, 0);
-                    con.TextUpdateData("#holder-3-host .q-text", data.question, 0);
+                    if (data.question != question && data.question != "" && number_of_player != 6) {
+                        if (q_counter == 0) {
+                            q_counter = 1;
 
-                    question = data.question;
+                            holders.forEach((holder_name) => {
+                                con.TextUpdateData(holder_name + " .q-text", "(Câu hỏi một lát nữa mới hiện)", 0);
+                            });    
+
+                            var len = data.question.length;
+
+                            setTimeout(function() {
+                                holders.forEach((holder_name) => {
+                                    con.TextUpdateData(holder_name + " .q-text", data.question, 0); 
+                                });    
+                                
+                                question = data.question;
+
+                                q_counter = 0;
+                            }, len * 50);
+                        }
+                    }
+                    else {
+                        holders.forEach((holder_name) => {
+                            con.TextUpdateData(holder_name + " .q-text", data.question, 0); 
+                        });    
+
+                        question = data.question;
+                    }
                 }
             }
-            else {                
-                con.TextUpdateData("#holder-2 .q-text", data.question_line_1, 1);
-                con.TextUpdateData("#holder-2 .q-text", data.question_line_2, 2);
-                con.TextUpdateData("#holder-3 .q-text", data.question_line_1, 1);
-                con.TextUpdateData("#holder-3 .q-text", data.question_line_2, 2);
-                con.TextUpdateData("#holder-2-chaser .q-text", data.question_line_1, 1);
-                con.TextUpdateData("#holder-2-chaser .q-text", data.question_line_2, 2);
-                con.TextUpdateData("#holder-3-chaser .q-text", data.question_line_1, 1);
-                con.TextUpdateData("#holder-3-chaser .q-text", data.question_line_2, 2);
-                con.TextUpdateData("#holder-2-host .q-text", data.question_line_1, 1);
-                con.TextUpdateData("#holder-2-host .q-text", data.question_line_2, 2);
-                con.TextUpdateData("#holder-3-host .q-text", data.question_line_1, 1);
-                con.TextUpdateData("#holder-3-host .q-text", data.question_line_2, 2);
+            else {        
+                holders.forEach((holder_name) => {
+                    con.TextUpdateData(holder_name + " .q-text", data.question_line_1, 1);
+                    con.TextUpdateData(holder_name + " .q-text", data.question_line_2, 2);
+                });        
             }
 
             if (data.answer_a == "" && data.answer_b == "" && data.answer_c == "") {

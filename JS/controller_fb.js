@@ -393,6 +393,8 @@ $(function () {
 
           upd("chaser_offering_mode", 0);
 
+          upd("act_hide_ques_in_player_fc_2", 0);
+
           ResetQuestionsData();
         }
 
@@ -491,6 +493,8 @@ $(function () {
           dib(".s-chaser-down");
           dib(".s-chaser-step-submit");
           dib(".fc-check-lose");
+
+          upd("act_hide_ques_in_player_fc_2", 0);
 
           upd("fc_timer", 120);
           con.TextUpdateData("#fc-timer-holder .timer", con.formatTimer(120), 1);
@@ -1818,8 +1822,6 @@ $(function () {
           enb(".s-chaser-down");
           enb(".s-chaser-step-submit");
           enb(".fc-check-lose");
-
-          UpdateFCQuestionIndex(1);
           UpdateFCQuestionsData(0);
           FillQuestionsToFCList();
 
@@ -1877,6 +1879,9 @@ $(function () {
                 ResetBuzzer();
               }
             }
+          }
+          else {
+            upd("act_hide_ques_in_player_fc_2", 1);
           }
 
           enb(".fc-correct, .fc-wrong, .fc-pause-timer");
@@ -2054,6 +2059,9 @@ $(function () {
             dib(".s-chaser-down");
             dib(".s-chaser-step-submit");
             dib(".fc-check-lose");
+            
+            UpdateFCQuestionsData(0);
+            upd("act_hide_ques_in_player_fc_2", 0);
           }
         });
 
@@ -2073,6 +2081,8 @@ $(function () {
           
           enb(".fc-reveal-steps");
           FillQuestionsToFCList();
+
+          UpdateFCQuestionIndex(1);
         });
 
         $(".fc-lose-money").click(function() {
@@ -2321,6 +2331,12 @@ $(function () {
 
             con.TextUpdateData(".high-offer-title", "High: " + accounting.formatMoney(data.high_offer), 1);
             con.TextUpdateData(".low-offer-title", "Low: " + accounting.formatMoney(data.low_offer), 1);
+
+            if (data.act_chaser_update_offer == 1) {
+              ho_offer = data.high_offer;
+              lo_offer = data.low_offer;
+              upd("act_chaser_update_offer", 0);
+            }
 
             if (data.act_start_h2h_timer == 1) {
               RunH2HClock();

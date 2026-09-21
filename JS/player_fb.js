@@ -465,9 +465,18 @@ $(function () {
 
             if (data.question != "") {
                 if (number_of_player <= 4 && data.act_hide_ques_in_player_fc_2 == 1) {
-                    holders.forEach((holder_name) => {
-                        con.TextUpdateData(holder_name + " .q-text", "(Ở phần này, đồ hoạ sẽ không hiện câu hỏi cho bạn. Hãy nghe kỹ DCT đọc câu hỏi. Nếu đến lượt đội mình trả lời mà các bạn không nghe rõ câu hỏi, có thể yêu cầu DCT đọc lại.)", 0);
-                    });    
+                    if (data.is_during_cooldown == 1) {
+                        holders.forEach((holder_name) => {
+                            con.TextUpdateData(holder_name + " .q-text", data.question, 0); 
+                        });    
+                        
+                        question = data.question;
+                    }
+                    else {
+                        holders.forEach((holder_name) => {
+                            con.TextUpdateData(holder_name + " .q-text", "(Ở phần này, đồ hoạ sẽ không hiện câu hỏi cho bạn. Hãy nghe kỹ DCT đọc câu hỏi. Chỉ khi Thợ săn trả lời sai và đến lượt đội mình trả lời, đồ hoạ mới hiện câu hỏi.)", 0);
+                        });    
+                    }
                 }
                 else {
                     if (data.question != question && data.question != "" && number_of_player != 6) {

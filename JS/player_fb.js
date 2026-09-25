@@ -578,7 +578,7 @@ $(function () {
 
             mode = data.mode;
 
-            if (data.allow_answering == 1 && data.is_during_answer_cooldown == 0) {
+            if (data.allow_answering == 1 && data.is_during_answer_cooldown != 1) {
                 if (number_of_player <= 4 && data.player_now == number_of_player && data.final_ans_player == "") {
                     enb(".ans-submit");
                 }

@@ -62,6 +62,12 @@ $(function () {
 
         $(".ans-submit").click(function() {
             var ans = $(this).attr("id")[11];
+            
+            upd("is_during_answer_cooldown", 1);
+            setTimeout(function() {
+                upd("is_during_answer_cooldown", 0);
+            }, 100);
+
             if (number_of_player <= 4) {
                 upd("final_ans_player", ans);
                 upd("sfx_player_answer", 1);
@@ -298,7 +304,6 @@ $(function () {
         }
 
         con.ModifyStepRed = function(nownum, type = 0) {
-            console.log(nownum);
             var dur = (type == 0) ? 250 : 0;
 
             var lastnum = fc_red_steps;
@@ -408,12 +413,13 @@ $(function () {
           
             for (var i = 1; i <= 4; i++) {
               var ord = eval("data.cont_order_" + i);
-              con.TextUpdateData("#holder-2 #player-tag-" + i, eval("data.cont_name_" + ord).toUpperCase(), 1);
-              con.TextUpdateData("#holder-3 #player-tag-" + i, eval("data.cont_name_" + ord).toUpperCase(), 1);
-              con.TextUpdateData("#holder-2-chaser #player-tag-" + i, eval("data.cont_name_" + ord).toUpperCase(), 1);
-              con.TextUpdateData("#holder-3-chaser #player-tag-" + i, eval("data.cont_name_" + ord).toUpperCase(), 1);
-              con.TextUpdateData("#holder-2-host #player-tag-" + i, eval("data.cont_name_" + ord).toUpperCase(), 1);
-              con.TextUpdateData("#holder-3-host #player-tag-" + i, eval("data.cont_name_" + ord).toUpperCase(), 1);
+              //console.log("data.cont_order_" + i + ' ' + ord + ' ' + eval("data.cont_name_" + ord));
+              con.TextUpdateData("#holder-2 #player-tag-" + i, (eval("data.cont_name_" + ord) ?? "").toUpperCase(), 1);
+              con.TextUpdateData("#holder-3 #player-tag-" + i, (eval("data.cont_name_" + ord) ?? "").toUpperCase(), 1);
+              con.TextUpdateData("#holder-2-chaser #player-tag-" + i, (eval("data.cont_name_" + ord) ?? "").toUpperCase(), 1);
+              con.TextUpdateData("#holder-3-chaser #player-tag-" + i, (eval("data.cont_name_" + ord) ?? "").toUpperCase(), 1);
+              con.TextUpdateData("#holder-2-host #player-tag-" + i, (eval("data.cont_name_" + ord) ?? "").toUpperCase(), 1);
+              con.TextUpdateData("#holder-3-host #player-tag-" + i, (eval("data.cont_name_" + ord) ?? "").toUpperCase(), 1);
             }
 
             con.TextUpdateData("#holder-2 .round-mode", "INDIVIDUAL CHASE", 1);
@@ -426,9 +432,9 @@ $(function () {
             if (number_of_player <= 4) {
                 var ord = eval("data.cont_order_" + number_of_player);
                 con.TextUpdateData("#holder-2 .player-number", "Người chơi " + ord, 1);
-                con.TextUpdateData("#holder-2 .player-name", eval("data.cont_name_" + ord).toUpperCase(), 1);
+                con.TextUpdateData("#holder-2 .player-name", (eval("data.cont_name_" + ord) ?? "").toUpperCase(), 1);
                 con.TextUpdateData("#holder-3 .player-number", "Người chơi " + ord, 1);
-                con.TextUpdateData("#holder-3 .player-name", eval("data.cont_name_" + ord).toUpperCase(), 1);
+                con.TextUpdateData("#holder-3 .player-name", (eval("data.cont_name_" + ord) ?? "").toUpperCase(), 1);
 
                 var num_of_eli = 0;
                 for (var i = 1; i <= 4; i++) {
@@ -463,7 +469,20 @@ $(function () {
                 con.TextUpdateData("#holder-3-host .player-number", "Dẫn chương trình", 1);
             }
 
-            if (data.question != "") {
+            /*
+            console.log("Firebase data:", data);
+            console.log("data.question:", data.question);
+            console.log("typeof question:", typeof data.question);
+
+            console.log("FULL QUESTION DATA:", {
+                question: data.question,
+                question_line_1: data.question_line_1,
+                question_line_2: data.question_line_2,
+                data: data
+            });
+            */
+
+            if (typeof data.question === "string" && data.question !== "") {
                 if (number_of_player <= 4 && data.act_hide_ques_in_player_fc_2 == 1) {
                     if (data.is_during_cooldown == 1) {
                         holders.forEach((holder_name) => {
@@ -511,8 +530,8 @@ $(function () {
             }
             else {        
                 holders.forEach((holder_name) => {
-                    con.TextUpdateData(holder_name + " .q-text", data.question_line_1, 1);
-                    con.TextUpdateData(holder_name + " .q-text", data.question_line_2, 2);
+                    con.TextUpdateData(holder_name + " .q-text", data.question_line_1 ?? "", 1);
+                    con.TextUpdateData(holder_name + " .q-text", data.question_line_2 ?? "", 2);
                 });        
             }
 
@@ -559,7 +578,7 @@ $(function () {
 
             mode = data.mode;
 
-            if (data.allow_answering == 1) {
+            if (data.allow_answering == 1 && data.is_during_answer_cooldown == 0) {
                 if (number_of_player <= 4 && data.player_now == number_of_player && data.final_ans_player == "") {
                     enb(".ans-submit");
                 }

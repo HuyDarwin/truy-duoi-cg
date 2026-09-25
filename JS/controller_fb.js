@@ -158,6 +158,7 @@ $(function () {
         var ic_wins = 0;
 
         var initial_steps_counter = 0;
+        var allow_chaser_updating_offer_counter = 0;
 
         var blue_steps = 0;
         var red_steps = 0;
@@ -395,8 +396,6 @@ $(function () {
 
           upd("act_hide_ques_in_player_fc_2", 0);
 
-          upd("is_during_cooldown", 0);
-
           ResetQuestionsData();
         }
 
@@ -497,8 +496,6 @@ $(function () {
           dib(".fc-check-lose");
 
           upd("act_hide_ques_in_player_fc_2", 0);
-
-          upd("is_during_cooldown", 0);
 
           upd("fc_timer", 120);
           con.TextUpdateData("#fc-timer-holder .timer", con.formatTimer(120), 1);
@@ -1368,7 +1365,12 @@ $(function () {
           dib(".cb-correct, .cb-wrong");
           enb(".cb-chaser-walk-on");
 
-          upd("chaser_offering_mode", 1);
+          if (allow_chaser_updating_offer_counter == 0) {
+            $(".allow-chaser-updating-offer").click();
+          }
+          else {
+            upd("chaser_offering_mode", 1);
+          }
         });
 
         $(".cb-chaser-walk-on").click(function() {
@@ -1385,6 +1387,21 @@ $(function () {
           upd("low_offer", lo_offer);
         });
 
+        $(".allow-chaser-updating-offer").click(function() { 
+          if (allow_chaser_updating_offer_counter == 0) {
+            $(this).css("background-color", "#146200FF");
+            allow_chaser_updating_offer_counter = 1;
+
+            upd("chaser_offering_mode", 1);
+          }
+          else {
+            $(this).css("background-color", "black");
+            allow_chaser_updating_offer_counter = 0;
+
+            upd("chaser_offering_mode", 0);
+          }
+        });
+
         $(".ladder-init").click(function() {
           dib(".cb-reveal-gpx");
           dib(this);
@@ -1397,7 +1414,12 @@ $(function () {
 
           upd("player_ladder_mode", 1);
 
-          upd("chaser_offering_mode", 1);
+          if (allow_chaser_updating_offer_counter == 0) {
+            $(".allow-chaser-updating-offer").click();
+          }
+          else {
+            upd("chaser_offering_mode", 1);
+          }
         });
 
         $(".show-low-offer").click(function() {
@@ -1423,7 +1445,12 @@ $(function () {
           upd("sfx_choose_high_offer", 1);
           upd("act_choose_high_offer", 1);
 
-          upd("chaser_offering_mode", 0);
+          if (allow_chaser_updating_offer_counter == 1) {
+            $(".allow-chaser-updating-offer").click();
+          }
+          else {
+            upd("chaser_offering_mode", 0);
+          }
 
           setTimeout(function() {
             temp_money = ho_offer;
@@ -1442,7 +1469,12 @@ $(function () {
           upd("sfx_choose_medium_offer", 1);
           upd("act_choose_medium_offer", 1);
 
-          upd("chaser_offering_mode", 0);
+          if (allow_chaser_updating_offer_counter == 1) {
+            $(".allow-chaser-updating-offer").click();
+          }
+          else {
+            upd("chaser_offering_mode", 0);
+          }
 
           setTimeout(function() {
             upd("change_ladder_mode_to_2", 1);
@@ -1459,7 +1491,12 @@ $(function () {
           upd("sfx_choose_low_offer", 1);
           upd("act_choose_low_offer", 1);
 
-          upd("chaser_offering_mode", 0);
+          if (allow_chaser_updating_offer_counter == 1) {
+            $(".allow-chaser-updating-offer").click();
+          }
+          else {
+            upd("chaser_offering_mode", 0);
+          }
 
           setTimeout(function() {
             temp_money = lo_offer;
@@ -1886,7 +1923,6 @@ $(function () {
           }
           else {
             upd("act_hide_ques_in_player_fc_2", 1);
-            upd("is_during_cooldown", 0);
           }
 
           enb(".fc-correct, .fc-wrong, .fc-pause-timer");
@@ -1987,7 +2023,6 @@ $(function () {
             setTimeout(function() {
               upd("sfx_fc_cooldown_bed", 1);
             }, 500);
-            upd("is_during_cooldown", 1);
           }
         });
 
@@ -2022,8 +2057,6 @@ $(function () {
           enb(".fc-pause-timer");
           enb(".fc-correct, .fc-wrong");
           upd("act_fc_timer_red", 0);
-
-          upd("is_during_cooldown", 0);
 
           if (fc_clock_running) {
             $("#qlh-fc .ques-next").click();

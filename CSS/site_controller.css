@@ -654,6 +654,14 @@ textarea:disabled{
   font-size:20px;
 }
 
+.allow-chaser-updating-offer{
+  left: 190px;
+  top: 0px;
+  width: 199px;
+  height: 24px;
+  font-size:12px;
+}
+
 .ladder-init{
   left: 224px;
   top: 29px;

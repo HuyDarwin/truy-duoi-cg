@@ -395,6 +395,7 @@ $(function () {
           upd("chaser_offering_mode", 0);
 
           upd("act_hide_ques_in_player_fc_2", 0);
+          upd("is_during_cooldown", 0);
 
           ResetQuestionsData();
         }
@@ -2020,6 +2021,7 @@ $(function () {
             upd("pause_timer", 1);
             upd("sfx_fc_cooldown", 1);
             upd("act_fc_timer_red", 1);
+            upd("is_during_cooldown", 1);
             setTimeout(function() {
               upd("sfx_fc_cooldown_bed", 1);
             }, 500);
@@ -2057,6 +2059,8 @@ $(function () {
           enb(".fc-pause-timer");
           enb(".fc-correct, .fc-wrong");
           upd("act_fc_timer_red", 0);
+
+          upd("is_during_cooldown", 0);
 
           if (fc_clock_running) {
             $("#qlh-fc .ques-next").click();

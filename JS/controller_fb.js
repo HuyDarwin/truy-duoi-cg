@@ -474,7 +474,7 @@ $(function () {
           upd("fc_turn_now", fc_turn_now);
 
           dib(".fc-chaser-walk-on");
-          dib(".fc-chaser-start");
+          enb(".fc-chaser-start");
           enb(".fc-reveal-steps");
           dib(".fc-reveal-timer");
           dib(".fc-start-timer");
@@ -1898,6 +1898,8 @@ $(function () {
           dib(this);
           enb(".fc-reveal-timer");
           upd("sfx_woosh_on", 1);
+
+          dib(".fc-chaser-start");
         });
 
         $(".fc-reveal-timer").click(function() {
@@ -2085,6 +2087,9 @@ $(function () {
         $(".fc-hide-gpx").click(function() {
           upd("act_fc_hide_gpx", 1);
           upd("sfx_wipe_off", 1);
+
+          upd("act_fc_timer_red", 0);
+          
           dib(this);
 
           dib(".fc-correct, .fc-wrong");
